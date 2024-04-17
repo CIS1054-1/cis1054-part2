@@ -1,0 +1,34 @@
+#Gioele Giunta 12-04-2024
+
+php_flag display_errors 0
+php_value error_reporting 32767 
+
+<FilesMatch "\.(json|lock|ini)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+<Files .htaccess>
+Order Allow,Deny
+Deny from all
+</Files>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Rewrite in 404.html when the file doensn't exist
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}\.php -f
+    RewriteRule ^(.*)$ $1.php [L]
+
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}\.html -f
+    RewriteRule ^(.*)$ $1.html [L]
+
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ 404.php [L]
+</IfModule>
+
+
+Options -Indexes
