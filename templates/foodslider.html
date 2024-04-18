@@ -1,18 +1,18 @@
 {% extends "index.html" %}
 
 {% block foodslider %}
-    <main class="slider">
+    <ul class="slider">
         {% for category in categories %}
-            <div class="slide">
+            <li class="slide">
                 <div class="slide-name">
-                    <h3>{{category.name }}</h3>
+                    <h1>{{category.name }}</h1>
                 </div>
                 <div class="slide-body">
                     <img src="{{ category.image }}" class="img" alt="{{category.name}}">
                 </div>
-            </div>
+            </li>
             {% endfor %}
-    </main>
+    </ul>
     {% endblock %}
 
 
