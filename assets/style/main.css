@@ -55,6 +55,32 @@ footer {
     margin-bottom: 0;
 }
 
+.slider {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 65%;
+    background-color: #f0f0f0; 
+    padding: 10px 0; 
+    text-align: center; 
+    z-index: 1000;
+}
+
+.slide {
+    display: inline-block; 
+    margin: 0 10px; 
+}
+
+.slide h3 {
+    margin: 0;
+    text-decoration: none;
+    color: #333;
+}
+
+.slide h3:hover {
+    color: #555;
+}
+
 @media (max-width: 767px) {
 }
 
