@@ -24,7 +24,6 @@ header {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     box-shadow: 0 3px 6px 0 rgba(0,0,0,0.16);
     margin: 0;
-    position: sticky;
     z-index: 100;
 }
 
@@ -84,17 +83,21 @@ ul.navbar-container li a{
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    display: block;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
     background-color: white;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 /*Color Carousel*/
@@ -181,8 +184,13 @@ body {
     }
 }
 
-  
+.slider {
+    width: 60vw;
+    display: flex;
+    flex-direction: row;
+}  
 .slider-container {
+    width: 100%;
     position: relative;
     overflow-x: auto;
     white-space: nowrap;
@@ -191,6 +199,8 @@ body {
     scrollbar-width: none;
     scroll-behavior: smooth;
     padding-bottom: 10px;
+    display: flex;
+    flex-direction: row;
   }
 
   .slider-container::-webkit-scrollbar {
@@ -198,25 +208,33 @@ body {
   }
 
   .slide {
-    display: inline-block;
-    width: 120px;
-    height: 80px;
+    min-width: 180px;
+    min-height: 180px;
     background: #fff;
     border-radius: 15px;
-    box-shadow: 0 14px 18px 0 rgba(0,0,0,0.8);
+    box-shadow: 0 4px 2px 0 rgba(0,0,0,0.2);
     margin-bottom: 50px;
     transition: 0.3s;
     margin: 0 10px;
     text-align: center;
     scroll-snap-align: center;
-    position: relative; 
+    position: relative;
+    overflow: hidden; 
+    display: flex;
+    flex-direction: column;
   }
+
+  .slide:hover {
+    transform: scale(1.1); 
+  }
+  
 
   .slide h1 {
     margin: 0;
     text-decoration: none;
     color: #333;
     font-size: 20px;
+    text-decoration: none;
   }
 
   .slide h1:hover {
@@ -225,51 +243,52 @@ body {
 
 
   .slide-name {
-    display: flex;
+    min-height: 50px;
     justify-content: center;
     align-items: center;
     padding: 10px 10px;
   }
 
   .slide-body {
-    padding: 10px;
+    width: 100%;
+    min-height: 130px;
     display: flex;
     justify-content: center;
     align-items: center;
     background: #ddd;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
+    position: absolute;
+    bottom: 0; 
   }
 
   .slide-body img {
-    max-height: 64px;
+    max-height: 110px;
+    height: 110px;
   }
   
   .slider-prev,
   .slider-next {
-    position: fixed;
-    top: 70px;
-    transform: translateY(-50%);
-    font-size: 24px;
+    width: 50px;
+    height: 45px;
+    margin-top: 80px;
+    font-size: 36px;
     font-weight: bold;
-    color: red;
+    color: var(--primary-color);
     background-color: white;
-    padding: 6px;
-    padding-left: 13px;
-    padding-right: 13px;
     border-radius: 50px;
     cursor: pointer;
     transition: background-color 0.3s;
-    z-index: 1; /* Asegura que las flechas estén por encima de los elementos del carrusel */
+    z-index: 1;
+    box-shadow: 0 4px 2px 0 rgba(0,0,0,0.2);
+    text-align: center;
   }
 
   .slider-prev {
-    left: 10px;
     display: none; 
   }
 
   .slider-next {
-    right: 10px;
     display: none;
   }
 
@@ -328,6 +347,40 @@ ul, li, ol {
     }
     .carousel-slide div {
         display: none;
+      }
+
+      .slider {
+        width: 80vw;
+      }
+      .slide {
+        min-width: 250px;
+        min-height: 250px;
+      }
+    
+      .slide h1 {
+        font-size: 20px;
+      }
+    
+      .slide h1:hover {
+        color: #555;
+      }
+    
+    
+      .slide-name {
+        min-height: 70px;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 10px;
+      }
+    
+      .slide-body {
+        min-width: 100%;
+        min-height: 180px;
+      }
+    
+      .slide-body img {
+        max-height: 100px;
+        height: 100px;
       }
 }
   

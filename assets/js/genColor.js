@@ -7,32 +7,49 @@
     * @info Me (Gioele) am going to use the CAMEL CASE for the java files
 **/
 
-function genColor (seed) {
-    color = Math.floor((Math.abs(Math.sin(seed) * 16777215)));
-    color = color.toString(16);
-    // pad any colors shorter than 6 characters with leading 0s
-    while(color.length < 6) {
+function genColor(seed) {
+    console.log("Sum: " + seed);
+    let r = ((seed * 19) % 256);
+    let g = ((seed * 31) % 256);
+    let b = ((seed * 47) % 256);
+    console.log("r " + r);
+    console.log("g " + g);
+    console.log("b " + b);
+
+    let color = ((r << 16) | (g << 8) | b).toString(16);
+    while (color.length < 6) {
+        console.log("color1: " + color);
       color = '0' + color;
     }
     console.log("color: " + color);
-    return color;
+    return "#" + color;
   }
   
-  function ascii_code (character) {
   
-    // Get the decimal code
-    let code = character.charCodeAt(0);
   
-    // If the code is 0-127 (which are the ASCII codes,
-    if (code < 128) {
-  
-      // Return the code obtained.
-      return code;
-  
-    // If the code is 128 or greater (which are expanded Unicode characters),
+  /* 
+        This is a recursive function to analyze and sum every character of a word
+        @param character string
+        @param i recursive index
+        @param sum the current sum starts from 0
+  */
+  function ascii_code (i, character, sum) {
+    console.log("Index  " + i)
+    if(character.length > i){
+        let code = character.charCodeAt(i);
+        i++;
+        console.log("Index2  " + i)
+
+        // If the code is 0-127 (which are the ASCII codes,
+        if (code < 128) {
+            // Sum + code so the color change
+            ascii_code(i, character, sum+code);
+        // If the code is 128 or greater (which are expanded Unicode characters),
+        }else{
+            // Sum -1 so the color change
+            ascii_code(i++, character, sum-1);
+        };
     }else{
-  
-      // Return -1 so the user knows this isn't an ASCII character.
-      return -1;
-    };
-  };
+        return sum;
+    }
+};
