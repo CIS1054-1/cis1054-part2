@@ -1,3 +1,13 @@
+{#
+* Index
+*
+* @author Gioele Giunta
+* @version 1.0
+* @since 2023-04-12
+* @info Me (Gioele) am going to use the CAMEL CASE for the html/twig files
+#}
+
+
 {% extends "layout.html" %}
 
 {% block pageTitle %}
@@ -5,11 +15,16 @@ Food at home!
 {% endblock %}
 
 {% block navbar %}
-{% include "navbar.html" % with {'foodTypes' : foodTypes}}
+{% include "navbar.html" with {'navbarData' : navbar_data} %}
 {% endblock %}
 
 {% block content %}
 <main>
-<h1>Hello</h1>
+    {% block carousel %}
+    {% include "carousel.html" %}
+    {% endblock %}
+    {% block foodSlider %}
+    {% include "foodslider.html" with {'categories' : categories} %}
+    {% endblock %}
 </main>
 {% endblock %}

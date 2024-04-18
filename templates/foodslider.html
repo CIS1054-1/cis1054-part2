@@ -1,19 +1,19 @@
-{% extends "index.html" %}
-
 {% block foodslider %}
-    <ul class="slider">
+    <ul class="slider-container">
+        <div class="slider-prev">&lt;</div>
         {% for category in categories %}
-            <li class="slide">
+            <a class="slide" href="">
                 <div class="slide-name">
                     <h1>{{category.name }}</h1>
                 </div>
                 <div class="slide-body">
-                    <img src="{{ category.image }}" class="img" alt="{{category.name}}">
+                    <img src="assets/img/{{ category.image }}" class="img" alt="{{category.name}}">
                 </div>
-            </li>
+            </a>
             {% endfor %}
+        <div class="slider-next">&gt;</div>
     </ul>
-    {% endblock %}
+{% endblock %}
 
 
 

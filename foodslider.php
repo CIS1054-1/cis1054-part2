@@ -6,37 +6,37 @@
         [
             'id' => 1,
             'name' => 'Breakfast',
-            'image' => 'assets/images/breakfast.jpg',
+            'image' => 'breakfast.jpg',
         ],
         [
             'id' => 2,
             'name' => 'Sushi',
-            'image' => 'assets/images/sushi.jpg',
+            'image' => 'sushi.jpg',
         ],
         [
             'id' => 3,
             'name' => 'Pizza',
-            'image' => 'assets/images/pizza.jpg',
+            'image' => 'pizza.jpg',
         ],
         [
             'id' => 4,
             'name' => 'Burgers',
-            'image' => 'assets/images/burger.jpg',
+            'image' => 'burger.jpg',
         ],
         [
             'id' => 5,
             'name' => 'Pasta',
-            'image' => 'assets/images/pasta.jpg',
+            'image' => 'pasta.jpg',
         ],
         [
             'id' => 6,
             'name' => 'Spanish',
-            'image' => 'assets/images/spanish.jpg',
+            'image' => 'spanish.jpg',
         ]
         ,[
             'id' => 7,
             'name' => 'Desserts',
-            'image' => 'assets/images/desserts.jpg',
+            'image' => 'desserts.jpg',
         ],
 
     ]

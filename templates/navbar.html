@@ -1,11 +1,18 @@
-<ul>
-    <li><a href="index.php">Home</a></li>
-    <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-            {% for item in foodTypes}
-            <li>{{item}}</li>
-            {% endfor %}
-        </ul>
+{% block navbar %}
+<ul class="navbar-container">
+    {% for item in navbarData.navbar_elements %}
+    {% if item.href == 'login' %}
+    <li>
+        {% if navbarData.is_authenticated %}
+            
+        {% else %}
+            <a href="/login">{{item.name}}</a>
+        {% endif %}
     </li>
+    {% else %}
+    <li><a href="{{item.href}}" {% if item.href is same as(index) %} class="active"{% endif %}>{{item.name}}</a></li>
+    {% endif %}
+    {% endfor %}
+
 </ul>
+{% endblock %}

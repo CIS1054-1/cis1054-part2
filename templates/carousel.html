@@ -1,0 +1,24 @@
+{% block carousel %}
+<div class="carousel">  
+    <img src="assets/img/chickenmburger.png"/>
+    <ul class="carousel-wrapper">
+        <li class="carousel-slide" style="background-color: var(--a-color)"><div><h1 style="color: var(--a-color);">Bite into <br> deliciousness!</h1></div></li>
+        <li class="carousel-slide" style="background-color: var(--b-color)"><div><h1 style="color: var(--b-color)">Mordi il <br> gusto!</h1></div></li>
+        <li class="carousel-slide" style="background-color: var(--c-color)"><div><h1 style="color: var(--c-color)">¡Muerde el <br> sabor!</h1></div></li>
+        <li class="carousel-slide" style="background-color: var(--d-color)"><div><h1 style="color: var(--d-color);">Agħfas <br> il-ġustifikazzjoni!</h1></div></li>
+        <li class="carousel-slide" style="background-color: var(--e-color)"><div><h1 style="color: var(--e-color)">Croque <br> la saveur!</h1></div></li> 
+    </ul>
+  </div>
+<script>
+    const slideWrapper = document.querySelector('.carousel-wrapper');
+    
+    // Ferma l'animazione quando l'utente interagisce con l'elemento
+    slideWrapper.addEventListener('mouseenter', () => {
+      slideWrapper.style.animationPlayState = 'paused';
+    });
+    
+    slideWrapper.addEventListener('mouseleave', () => {
+      slideWrapper.style.animationPlayState = 'running';
+    });
+</script>
+{% endblock %}
