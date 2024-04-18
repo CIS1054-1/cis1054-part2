@@ -1,7 +1,15 @@
 {% extends "layout.html" %}
 
+{% block pageTitle %}
+Food at home!
+{% endblock %}
+
+{% block navbar %}
+{% include "navbar.html" % with {'foodTypes' : foodTypes}}
+{% endblock %}
+
 {% block content %}
 <main>
-
+<h1>Hello</h1>
 </main>
 {% endblock %}
