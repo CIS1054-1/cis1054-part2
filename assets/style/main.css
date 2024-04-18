@@ -110,4 +110,102 @@ footer {
         max-width: 400px;
     }
 }
+
+.slider-container {
+      position: relative;
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch; /* Permite desplazamiento suave en dispositivos móviles */
+      scroll-snap-type: x mandatory; /* Habilita el snap al deslizar */
+      scrollbar-width: none; /* Oculta la barra de desplazamiento */
+      scroll-behavior: smooth; /* Habilita el desplazamiento suave */
+    }
+
+    .slider-container::-webkit-scrollbar {
+      display: none; /* Oculta la barra de desplazamiento en navegadores WebKit */
+    }
+
+    .slide {
+      display: inline-block;
+      width: 120px;
+      height: 80px;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 14px 18px 0 rgba(0,0,0,0.8);
+      margin-bottom: 50px;
+      transition: 0.3s;
+      margin: 0 10px;
+      text-align: center;
+      scroll-snap-align: center; /* Habilita el snap al deslizar */
+      position: relative; /* Añadido para posicionar las flechas */
+    }
+
+    .slide h3 {
+      margin: 0;
+      text-decoration: none;
+      color: #333;
+    }
+
+    .slide h3:hover {
+      color: #555;
+    }
+
+    .slide-body img {
+      max-height: 64px;
+    }
+
+    .slide-name {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px 10px;
+    }
+
+    .slide-body {
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #ddd;
+      border-bottom-left-radius: 15px;
+    }
+
+    .slider-prev,
+    .slider-next {
+      position: fixed;
+      top: 70px;
+      transform: translateY(-50%);
+      font-size: 24px;
+      font-weight: bold;
+      color: red;
+      background-color: white;
+      padding: 6px;
+      padding-left: 13px;
+      padding-right: 13px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      z-index: 1; /* Asegura que las flechas estén por encima de los elementos del carrusel */
+    }
+
+    .slider-prev {
+      left: 10px;
+      display: none; /* Ocultamos la flecha izquierda por defecto */
+    }
+
+    .slider-next {
+      right: 10px;
+      display: none; /* Ocultamos la flecha derecha por defecto */
+    }
+
+    .slider-prev:hover,
+    .slider-next:hover {
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    @media screen and (max-width: 600px) {
+      .slide img {
+        max-width: 120px; /* Cambia el tamaño máximo de la imagen para dispositivos más pequeños */
+      }
+    }
   
