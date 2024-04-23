@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <main class="menu">
+        {% block foodSlider %}
+        {% include "foodslider.html" with {'categories' : categories} %}
+        {% endblock %}
+        <ul class="menu-list">
+            {% for item in menuItems %}
+            <li class="menu-item">
+                <ul>
+                    <li class="item-image">
+                        <img src="{{ item.image }}" alt="{{ item.name }}">
+                    </li>
+                    <li class="item-info">
+                        <h3 class="item-name">{{ item.name }}</h3>
+                        <p class="item-ingredients">{{ item.ingredientes }}</p>
+                        <div class="item-price">{{ item.price }} €</div>
+                    </li>
+                </ul>
+            </li>
+            {% endfor %}
+        </ul>
+    </main>
+{% endblock %}
