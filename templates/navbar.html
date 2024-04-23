@@ -1,16 +1,29 @@
+{#
+    * NavBar
+    *
+    * @author Gioele Giunta
+    * @version 1.0
+    * @since 2023-04-12
+    * @info Me (Gioele) am going to use the CAMEL CASE for the html/twig files
+    #}
+    
 {% block navbar %}
 <ul class="navbar-container">
     {% for item in navbarData.navbar_elements %}
-    {% if item.href == 'login' %}
+    {% if item.href == 'signin' %}
     <li>
         {% if navbarData.is_authenticated %}
             
         {% else %}
-            <a href="/login">{{item.name}}</a>
+            <a href="{{item.href}}">{{item.name}}</a>
         {% endif %}
     </li>
     {% else %}
-    <li><a href="{{item.href}}" {% if item.href is same as(index) %} class="active"{% endif %}>{{item.name}}</a></li>
+        {% if item.href == navbarData.page_name %}
+        <li class="active"><a href="{{item.href}}">{{item.name}}</a></li>
+        {% else %}
+        <li><a href="{{item.href}}">{{item.name}}</a></li>
+        {% endif %}
     {% endif %}
     {% endfor %}
 

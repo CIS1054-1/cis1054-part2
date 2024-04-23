@@ -13,6 +13,6 @@
     require_once __DIR__ . '/foodslider.php';
 
     //Render view
-    echo $twig->render('index.html', ['navbar_data' => $navbar_data, 'categories' => $categories]);
+    echo $twig->render('index.html', ['navbar_data' => $navbar_data, 'categories' => $categories, 'selectedCategories' => []]);
 
 ?>

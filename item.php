@@ -1,7 +1,8 @@
 <?php
 
-    require_once __DIR__ .'database.php';
-    require_once __DIR__ .'foodslider.php';
+    //require_once __DIR__ .'database.php';
+    require_once __DIR__ . '/navbar.php';
+    require_once __DIR__ . '/foodslider.php';
     
     $items = [
         [
@@ -32,7 +33,7 @@
             'Category'=> 'Spanish',
             'price' => 15.69,
         ]
-    ]
+        ];
 
     /*
     if(isset($_GET['id'])){
@@ -58,5 +59,6 @@
         echo $twig->render('404.html');
     }
     */
+    echo $twig->render('item.html', ['navbar_data' => $navbar_data, 'categories' => $categories, 'selectedCategories' => [1], 'menuItems' => $items]);
 
 ?>

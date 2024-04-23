@@ -6,6 +6,11 @@
         {% for category in categories %}
             <a class="slide" href="">
                 <div class="slide-name">
+                    {% for selectedCategory in selectedCategories %}
+                    {% if category.id == selectedCategory %}
+                    <h1>v</h1>
+                    {% endif %}
+                    {% endfor %}
                     <h1>{{category.name }}</h1>
                 </div>
                 <div class="slide-body">

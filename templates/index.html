@@ -11,7 +11,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-Food at home!
+Los Pollos Hermanos
 {% endblock %}
 
 {% block navbar %}
@@ -26,7 +26,7 @@ Food at home!
     <h1>Taste the world!</h1>
     <p>These are the cuisines you will find at Pollos Hermanos, click on them to see the dishes.</p>
     {% block foodSlider %}
-    {% include "foodslider.html" with {'categories' : categories} %}
+    {% include "foodslider.html" with {'categories' : categories, 'selectedCategories' : selectedCategories} %}
     {% endblock %}
 </main>
 {% endblock %}

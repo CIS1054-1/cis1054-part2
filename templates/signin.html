@@ -1,0 +1,57 @@
+{#
+    * Sign In
+    *
+    * @author Gioele Giunta
+    * @version 1.0
+    * @since 2023-04-23
+    * @info Me (Gioele) am going to use the CAMEL CASE for the html/twig files
+    #}
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Sign In
+{% endblock %}
+
+{% block navbar %}
+{% include "navbar.html" with {'navbarData' : navbar_data} %}
+{% endblock %}
+
+{% block content %}
+<main>
+    <div class="card flex-row-d ">
+        <div class="sub-card phone-none">
+            <img src="assets/img/senior_chicken.png" alt="Sign In!">
+        </div>
+        <div class="sub-card">
+            <h1>Sign In</h1>
+            <div class="field-container">
+                <p>Field with * are requireds</p>
+            </div>
+            <form method="post" name="myform">
+                <div class="field-container">
+                    <label for="email-input">
+                    <span class="label-text">*Email:</span>
+                    </label>
+                    <input type="email" id="email-input" placeholder="Enter your email" autofill="email">
+                    <p id="email-error" class="error-text" role="region"></p>
+                </div>
+              
+                <div class="field-container">
+                    <label for="password-input">
+                    <span class="label-text">*Password:</span>
+                    </label>
+                    <input type="password" id="password-input" placeholder="Enter your password">
+                    <p id="password-error" class="error-text" role="region"></p>
+                </div>
+
+                    <button type="submit" id="submit" class="primary-button">Sign In</button>
+                <p>First time on LPH?<a href="signup">  Sign Up!</a></p>
+            </form>
+        </div>
+    </div>
+    <script src="assets/js/validator/signValidator.js"></script>
+
+
+</main>
+{% endblock %}

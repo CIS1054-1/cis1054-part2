@@ -10,17 +10,12 @@
 require_once __DIR__ . '/server/autoload.php';
 
     $current_url = $_SERVER['REQUEST_URI'];
-
-    // Extract the page name from the URL
+    
     $url_parts = explode('/', $current_url);
     $page_name = end($url_parts);
     
-    // Determine the page name
-    if (empty($page_name)) {
-        $page_name = 'index';
-    } else {
-        $page_name = $current_url;
-    }
+    // Remove any query parameters from the page name
+    $page_name = strtok($page_name, '?');
 
     //MockUp 
     $navbar_elements = [
@@ -36,7 +31,7 @@ require_once __DIR__ . '/server/autoload.php';
         ],
         [
             'id' => 2,
-            'href' => 'login',
+            'href' => 'signin',
             'name' => 'Sign In',
         ]
     ];

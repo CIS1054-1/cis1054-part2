@@ -10,11 +10,15 @@
 /*Colors*/
 :root {
     --primary-color: #65aaeb;
+    --primary-disabled-color: #4e6d8a;
     --a-color: #FFC8DD;
     --b-color: #BDBDFF;
     --c-color: #B5D5FF;
     --d-color: #FFDF9E;
     --e-color: #D8B4FE;
+    --gray: #666;
+    --black: #393939;
+    --error: #ef4040;
 }
 
 header {
@@ -27,11 +31,11 @@ header {
     z-index: 100;
 }
 
-div.navbar-image{
+a.navbar-image{
     justify-content: flex-end;
 }
 
-div.navbar-image img{
+a.navbar-image img{
     max-width: 150px;
     width: 100%;
     height: auto;
@@ -68,7 +72,7 @@ ul.navbar-container li:hover{
     background-color: rgb(245, 245, 245);
 }
 
-ul.navbar-container li.active{
+.active{
     border: 1px solid var(--primary-color);
 }
 
@@ -99,6 +103,127 @@ main {
     align-items: center;
     text-align: center;
 }
+
+
+/*Generic Card*/
+.card {
+  width: 50vw;
+  height: auto;
+  margin-top: 10vh;
+  padding: 20px;
+  border-radius: 2px;
+  border: 1px solid #dddddd;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row-d {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.sub-card {
+  width: 50%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.card h1 {
+  font-size: 20px;
+  color: var(--black);
+}
+
+.card
+
+/* Button Style */
+button {
+  text-transform: uppercase;
+}
+.primary-button {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.primary-button:hover {
+  background-color: transparent;
+  color: var(--primary-color);
+  box-shadow: 0 0 0 2px var(--primary-color);
+}
+
+.primary-button:active {
+  background-color: rgba(var(--primary-color), 0.2);
+  box-shadow: 0 0 0 3px var(--primary-color);
+  transform: translateY(2px);
+}
+
+.primary-button:disabled {
+  background-color: var(--primary-disabled-color);
+  cursor: not-allowed;
+}
+
+/*Login Form*/
+div.field-container{
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  text-align: left;
+}
+
+.field-container input {
+  font-size: 16px;
+  padding: 12px 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 400px;
+  color: var(--black);
+  background-color: #fff;
+  transition: border-color 0.3s ease-in-out;
+  border-radius: 20px;
+}
+.field-container input::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+.field-container input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 5px rgba(108, 99, 255, 0.5);
+}
+
+.label-text {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: var(--black);
+}
+
+.error-text {
+  font-size: 14px;
+  color: var(--error);
+  margin-top: 5px;
+}
+
 
 /*Color Carousel*/
 .carousel {
@@ -184,6 +309,8 @@ main {
     }
 }
 
+
+/*Food Slider*/
 .slider {
     width: 60vw;
     display: flex;
@@ -299,6 +426,60 @@ main {
 
 
 
+/* Menu Styles */
+
+.menu-list {
+  width: 80vw;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  padding: 40px;
+}
+
+.menu-item {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 40px;
+}
+
+.item-image {
+  width: 30%;
+  height: 200px;
+  flex-basis: 200px;
+  margin-right: 20px;
+}
+
+.item-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+.item-info {
+  width: 50%;
+}
+
+.item-name {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.item-ingredients {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.item-price {
+  width: 20%;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: right;
+}
+
+
+/* Footer*/
+
 footer {
     background-color: #333;
     color: #fff;
@@ -365,7 +546,7 @@ ul, li, ol {
 
 /*Tablet*/
 @media (max-width: 977px) {
-    div.navbar-image img{
+    a.navbar-image img{
         max-width: 130px;
         margin-left: 5vw;
     }
@@ -386,7 +567,24 @@ ul, li, ol {
 
 /*Phone*/
 @media (max-width: 600px) {
-    .carousel img{
+  .phone-none {
+    display: none;
+  }
+
+  .card {
+    width: 100%;
+    height: 100%;
+    margin-top: 0px;
+    padding: 20px;
+    border-radius: 0px;
+    border: 0px solid #0d0d0d;
+  }
+
+  .sub-card {
+    width: 100%;
+  }
+    
+  .carousel img{
         max-width: 100vw;
         height: auto;
         margin-left: -55vw;
@@ -398,15 +596,15 @@ ul, li, ol {
       }
 
       .slider {
-        width: 80vw;
+        width: 100vw;
       }
       .slide {
-        min-width: 250px;
-        min-height: 250px;
+        min-width: 135px;
+        min-height: 135px;
       }
     
       .slide h1 {
-        font-size: 20px;
+        font-size: 16px;
       }
     
       .slide h1:hover {
@@ -415,7 +613,7 @@ ul, li, ol {
     
     
       .slide-name {
-        min-height: 70px;
+        min-height: 25px;
         justify-content: center;
         align-items: center;
         padding: 10px 10px;
@@ -423,12 +621,17 @@ ul, li, ol {
     
       .slide-body {
         min-width: 100%;
-        min-height: 180px;
+        min-height: 100px;
       }
     
       .slide-body img {
-        max-height: 100px;
-        height: 100px;
+        max-height: 70px;
+        height: 70px;
+      }
+
+      .flex-row-d {
+        display: flex;
+        flex-direction: column;
       }
 }
   
