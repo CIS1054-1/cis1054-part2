@@ -314,6 +314,54 @@ ul, li, ol {
     list-style-type: none;
 }
 
+/* Menu Styles */
+.menu {
+  padding: 40px;
+}
+
+.menu-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.item-image {
+  flex-basis: 200px;
+  margin-right: 20px;
+}
+
+.item-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+.item-info {
+  flex-grow: 1;
+}
+
+.item-name {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.item-ingredients {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.item-price {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: right;
+}
+
 
 /*Tablet*/
 @media (max-width: 977px) {
