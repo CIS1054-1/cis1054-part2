@@ -10,7 +10,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-Sign In
+Sign Up
 {% endblock %}
 
 {% block navbar %}
@@ -19,12 +19,12 @@ Sign In
 
 {% block content %}
 <main>
-    <div class="card flex-row-d ">
+    <section class="card flex-row-d border-1p">
         <div class="sub-card phone-none">
             <img src="assets/img/junior_chicken.png" alt="Sign Up!">
         </div>
         <div class="sub-card">
-            <h1>Sign Up</h1>
+            <h1 class="font-20p">Sign Up</h1>
             <div class="field-container">
                 <p>Field with * are requireds</p>
             </div>
@@ -63,7 +63,7 @@ Sign In
                 <p>Do you have an account?<a href="signin">  Sign In!</a></p>
             </form>
         </div>
-    </div>
+    </section>
     <script src="assets/js/validator/signValidator.js"></script>
 
 

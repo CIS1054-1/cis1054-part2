@@ -5,38 +5,33 @@
     $categories =[
         [
             'id' => 1,
-            'name' => 'Breakfast',
-            'image' => 'breakfast.jpg',
+            'name' => 'Chicken',
+            'image' => 'chicken.png',
         ],
         [
             'id' => 2,
-            'name' => 'Sushi',
-            'image' => 'sushi.jpg',
+            'name' => 'Pizza',
+            'image' => 'pizza.png',
         ],
         [
             'id' => 3,
-            'name' => 'Pizza',
-            'image' => 'pizza.jpg',
+            'name' => 'Burgers',
+            'image' => 'burgers.png',
         ],
         [
             'id' => 4,
-            'name' => 'Burgers',
-            'image' => 'burger.jpg',
+            'name' => 'Pasta',
+            'image' => 'pasta.png',
         ],
         [
             'id' => 5,
-            'name' => 'Pasta',
-            'image' => 'pasta.jpg',
-        ],
-        [
-            'id' => 6,
-            'name' => 'Spanish',
-            'image' => 'spanish.jpg',
+            'name' => 'Drinks',
+            'image' => 'drinks.png',
         ]
         ,[
-            'id' => 7,
+            'id' => 6,
             'name' => 'Desserts',
-            'image' => 'desserts.jpg',
+            'image' => 'desserts.png',
         ],
 
     ]

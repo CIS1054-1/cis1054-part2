@@ -13,9 +13,17 @@
     {% if item.href == 'signin' %}
     <li>
         {% if navbarData.is_authenticated %}
-            
+            {% if item.href == navbarData.page_name %}
+            <li class="active"><a href="{{item.href}}">{{item.name}}</a></li>
+            {% else %}
+            <li><a href="{{item.href}}">{{item.name}}</a></li>
+            {% endif %}
         {% else %}
-            <a href="{{item.href}}">{{item.name}}</a>
+            {% if item.href == navbarData.page_name %}
+            <li class="active"><a href="{{item.href}}">{{item.name}}</a></li>
+            {% else %}
+            <li><a href="{{item.href}}">{{item.name}}</a></li>
+            {% endif %}
         {% endif %}
     </li>
     {% else %}

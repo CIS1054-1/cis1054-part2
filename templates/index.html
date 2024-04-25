@@ -23,10 +23,13 @@ Los Pollos Hermanos
     {% block carousel %}
     {% include "carousel.html" %}
     {% endblock %}
-    <h1>Taste the world!</h1>
-    <p>These are the cuisines you will find at Pollos Hermanos, click on them to see the dishes.</p>
-    {% block foodSlider %}
-    {% include "foodslider.html" with {'categories' : categories, 'selectedCategories' : selectedCategories} %}
-    {% endblock %}
+    <section class="white-bar">
+        <h1>Taste the world!</h1>
+        <p>These are the cuisines you will find at Pollos Hermanos, click on them to see the dishes.</p>
+        {% block foodSlider %}
+        {% include "foodslider.html" with {'categories' : categories, 'selectedCategories' : selectedCategories} %}
+        {% endblock %}
+    </section>
+
 </main>
 {% endblock %}

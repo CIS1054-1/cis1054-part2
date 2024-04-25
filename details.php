@@ -1,43 +1,30 @@
 <?php
-    require_once __DIR__ .'database.php';
+/**
+* Details
+*
+* @author Gioele Giunta
+* @version 1.0
+* @since 2023-04-25
+* @info Me (Gioele) am going to use the SNAKE CASE for the php files
+*/
+    require_once __DIR__ . '/bootstrap.php';
+    require_once __DIR__ . '/navbar.php';
+    require_once __DIR__ . '/foodslider.php';
 
-    $details = [
+    //MockUp
+    $details = 
         [
             'id' => 1,
             'name' => 'Pizza Margharita',
-            'image'=> 'pizza.jpg',
-            'Category'=> 'Pizza',
+            'image'=> 'senior_chicken.png',
+            'ingredients' => 'Pizza with tomato souce, mozzarella fiordilatte & basilic powder',
+            'category' => 'Pizza',
+            'allergies' => ['Nuts', 'Milk'],    
             'price' => 10.99,
             'timeOfPreparation' => 10,
-        ],
-        [
-            'id' => 2,
-            'name' => 'Chicken Burger',
-            'image'=> 'burger.jpg',
-            'Category'=> 'Burgers',
-            'price' => 13.99,
-            'timeOfPreparation' => 16,
-        ],
-        [
-            'id' => 3,
-            'name' => 'Maki',
-            'image'=> 'sushi.jpg',
-            'Category'=> 'Sushi',
-            'price' => 7.45,
-            'timeOfPreparation' => 15,
-        ],
-        [
-            'id' => 4,
-            'name' => 'Paella Valenciana',
-            'image'=> 'spanish.jpg',
-            'Category'=> 'Spanish',
-            'price' => 15.69,
-            'timeOfPreparation' => 30,
-        ]
-    ]
-
-
-
+        ];
+    
+        echo $twig->render('details.html', ['navbar_data' => $navbar_data, 'details'=> $details]);
 
     /*
     if(isset($_GET['id'])){
@@ -59,8 +46,7 @@
             'allergies'         => $result[0]['allergies'],
             'timeOfPreparation' => $result[0]['time'],
         ];
-            $products = array()
-             echo $twig->render('item.html', ['item' => $items, 'categories' => $categories, 'selectedCategories' => $selectedCategories, 'details'=> $details]);
+             echo $twig->render('details.html', ['navbar_data' => $navbar_data, 'details'=> $details]);
          }else{
              echo $twig->render('404.html');
         }

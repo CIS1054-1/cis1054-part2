@@ -1,6 +1,6 @@
 <?php
 
-    //require_once __DIR__ .'database.php';
+    require_once __DIR__ . '/bootstrap.php';
     require_once __DIR__ . '/navbar.php';
     require_once __DIR__ . '/foodslider.php';
     
@@ -8,6 +8,7 @@
         [
             'id' => 1,
             'name' => 'Pizza Margharita',
+            'ingredients' => 'Pizza with tomato souce, mozzarella fiordilatte & basilic powder',
             'image'=> 'pizza.jpg',
             'Category'=> 'Pizza',
             'price' => 10.99,
@@ -15,6 +16,7 @@
         [
             'id' => 2,
             'name' => 'Chicken Burger',
+            'ingredients' => 'Pizza with tomato souce, mozzarella fiordilatte & basilic powder',
             'image'=> 'burger.jpg',
             'Category'=> 'Burgers',
             'price' => 13.99,
@@ -22,6 +24,7 @@
         [
             'id' => 3,
             'name' => 'Maki',
+            'ingredients' => 'Pizza with tomato souce, mozzarella fiordilatte & basilic powder',
             'image'=> 'sushi.jpg',
             'Category'=> 'Sushi',
             'price' => 7.45,
@@ -29,6 +32,7 @@
         [
             'id' => 4,
             'name' => 'Paella Valenciana',
+            'ingredients' => 'Pizza with tomato souce, mozzarella fiordilatte & basilic powder',
             'image'=> 'spanish.jpg',
             'Category'=> 'Spanish',
             'price' => 15.69,

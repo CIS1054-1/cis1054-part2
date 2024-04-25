@@ -10,24 +10,27 @@ Los Pollos Hermanos
 
 {% block content %}
     <main>
+        <div style="margin-top: 50px;"></div>
         {% block foodSlider %}
         {% include "foodslider.html" with {'categories' : categories, selectedCategories: selectedCategories} %}
         {% endblock %}
-        <div class="menu-list">
-            {% for item in menuItems %}
-                <ul style="width: 100%" class="menu-item flex-row-d">
-                    <li class="item-image">
-                        <img src="{{ item.image }}" alt="{{ item.name }}">
-                    </li>
-                    <li class="item-info flex-row-d">
-                        <div class="flex-column">
-                            <h3 class="item-name">{{ item.name }}</h3>
-                            <p class="item-ingredients">{{ item.ingredientes }}</p>
-                        </div>
-                    </li>
-                        <div class="item-price">{{ item.price }} €</div>
-                </ul>
-            {% endfor %}
+        <section class="gray-bar">
+            <div class="menu-list">
+                {% for item in menuItems %}
+                    <ul style="width: 100%" class="menu-item flex-row-d">
+                        <li class="item-image">
+                            <img src="{{ item.image }}" alt="{{ item.name }}">
+                        </li>
+                        <li class="item-info flex-row-d">
+                            <div class="flex-column field-container">
+                                <h3 class="item-name">{{ item.name }}</h3>
+                                <p class="item-ingredients">{{ item.ingredients }}</p>
+                            </div>
+                        </li>
+                            <div class="item-price">{{ item.price }} €</div>
+                    </ul>
+                {% endfor %}
             </div>
+        </section>
     </main>
 {% endblock %}

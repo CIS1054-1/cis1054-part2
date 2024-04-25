@@ -1,17 +1,16 @@
 {% block foodslider %}
-<script src="assets/js/genColor.js" defer></script>
-<div class="slider">
-<div class="slider-prev">&lt;</div>
+<section class="slider">
+    <div class="slider-prev">&lt;</div>
     <ul class="slider-container">
         {% for category in categories %}
             <a class="slide" href="">
-                <div class="slide-name">
+                <div class="slide-name flex-row">
                     {% for selectedCategory in selectedCategories %}
                     {% if category.id == selectedCategory %}
-                    <h1>v</h1>
+                    <h1 class="font-40p green">&#x2713;</h1>
                     {% endif %}
                     {% endfor %}
-                    <h1>{{category.name }}</h1>
+                    <h1 class="font-20p title">{{category.name }}</h1>
                 </div>
                 <div class="slide-body">
                     <img src="assets/img/{{ category.image }}" class="img" alt="{{category.name}}">
@@ -19,8 +18,8 @@
             </a>
             {% endfor %}
     </ul>
-<div class="slider-next">&gt;</div>
-</div>
+    <div class="slider-next">&gt;</div>
+</section>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             /*
@@ -29,8 +28,8 @@
             var slideBodies = document.querySelectorAll('.slider-container .slide-body');
             slideBodies.forEach(function(slideBody) {
                 
-            var categoryName = slideBody.parentElement.querySelector('.slide-name h1').innerText;
-            slideBody.style.backgroundColor = genColor(ascii_code(0, categoryName, 0));
+            var categoryName = slideBody.parentElement.querySelector('.slide-name h1.title').innerText;
+            slideBody.style.backgroundColor = genColor(categoryName);
             });
 
             /*
@@ -75,6 +74,7 @@
             toggleArrows();
         });
     </script>
+    <script type="text/javascript" src="assets/js/genColor.js"></script>
 {% endblock %}
 
 
