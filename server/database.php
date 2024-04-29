@@ -47,13 +47,17 @@
                 'status' => false,
                 'message' => $error,
             ];
-            return json_encode($return);
+        }else{
+            //Set $connection to the connection of the instance
+            $connection = self::$connection;
+            $return = [
+                'status' => true,
+                'message' => self::$connection,
+            ];
         }
-        $return = [
-            'status' => true,
-            'message' => self::$connection,
-        ];
+
         return json_encode($return);
+        
     }
 
     /**

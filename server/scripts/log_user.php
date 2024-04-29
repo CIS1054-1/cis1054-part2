@@ -1,81 +1,62 @@
 <?php
 /**
-* log_user
-*
-* @author Gioele Giunta
-* @version 1.0
-* @since 2023-04-29
-* @info Me (Gioele) am going to use the SNAKE CASE for the php files
-*/
-require_once __DIR__.'../autoload.php';
+ * log_user
+ *
+ * @author Gioele Giunta
+ * @version 1.0
+ * @since 2023-04-29
+ * @info Me (Gioele) am going to use the SNAKE CASE for the php files
+ */
+require_once __DIR__ . '../../bootstrap.php';
 
+// Set the Content-Type header to indicate that the response is in JSON format
 header('Content-Type: application/json');
 
-if($_SERVER["REQUEST_METHOD"] == "POST") {
+// Check if the request method is POST
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get the request body as JSON
     $inputJSON = file_get_contents('php://input');
     $input = json_decode($inputJSON, TRUE);
-    $email = mysqli_real_escape_string($conn, $input['email']);
-    $password = mysqli_real_escape_string($conn, $input['password']);
 
-    
+    // Escape the email and password values to prevent SQL injection
+    $email = $db->quote($input['email']);
+    $password = $db->quote($input['password']);
+
+    // Check if email and password are not empty
     if (!empty($email) && !empty($password)) {
-
-
-        //Check EMAIL
-        $email_query = "SELECT id FROM users WHERE email='$email'";
-        $email_result = mysqli_query($conn, $email_query);
+        // Check if the email exists in the users table
+        $email_query = "SELECT * FROM users WHERE email=$email";
+        $email_result = $db->query($email_query);
         if (mysqli_num_rows($email_result) == 0) {
+            // If the email does not exist, return an error response
             $arr = ["status" => "wrong", "message" => "Oops! Wrong email!"];
-    		echo json_encode($arr);
+            echo json_encode($arr);
         } else {
-            //Check PASSWORD
-            $password_query = "SELECT * FROM users WHERE email = '$email' AND password = " . hash_crypt($password) . "";
-
-            $password_result = mysqli_query($conn, $password_query);
-            if (mysqli_num_rows($password_result) == 0) {
-                 $arr = ["status" => "wrong", "message" => "Oops! Wrong password!"];
-    			 echo json_encode($arr);
+            // Check if the password is correct
+            $user_row = mysqli_fetch_array($email_result);
+            if ($user_row['password'] == hash_crypt($password)) {
+                // If the email and password are correct, set the session variables
+                $_SESSION['id'] = $user_row['ID'];
+                $_SESSION['name'] = $user_row['name'];
+                $_SESSION['surname'] = $user_row['surname'];
+                $_SESSION['email'] = $user_row['email'];
+                $_SESSION['password'] = $user_row['password'];
+                $_SESSION['role'] = $user_row['role'];
+                $arr = ["status" => "true", "message" => "Success"];
+                echo json_encode($arr);
             } else {
-                $user_row = mysqli_fetch_array($password_result);
-                $tmp_id = hash_crypt($user_row['ID']);
-                $users_sessions_zero = mysqli_query($conn, "UPDATE users_sessions SET session_id='0' WHERE user_id = $tmp_id");
-                if (mysqli_affected_rows($conn) > 0) {
-                    $users_sessions_set = mysqli_query($conn, "UPDATE users_sessions SET session_id='" . session_id() . "' WHERE user_id = $tmp_id");
-                    if (mysqli_affected_rows($conn) > 0) {
-                        $_SESSION['id'] = $user_row['ID'];
-                        $_SESSION['name'] = $user_row['name'];
-                        $_SESSION['username'] = $user_row['username'];
-                        $_SESSION['email'] = $user_row['email'];
-                        $_SESSION['password'] = $user_row['password'];
-                        $_SESSION['age'] = $user_row['age'];
-                        $_SESSION['img_url'] = $user_row['img_url'];
-                        $_SESSION['description'] = $user_row['description'];
-                        $_SESSION['referral_id'] = $user_row['referral_id'];
-                        if ($user_row['referral_user'] != null && $user_row['referral_user'] != "null" && $user_row['referral_user'] != undefined && $user_row['referral_user'] != 'undefined') {
-                            $_SESSION['referral_user'] = $user_row['referral_user'];
-                        } else {
-                            $_SESSION['referral_user'] = "null";
-                        }
-                        $arr = ["status" => "true", "message" => "Success", "name" => $user_row['name'], "username" => $user_row['username'], "age" => $user_row['age'], "imgURL" => $user_row['img_url'], "sessionID" => session_id()];
-    				 	echo json_encode($arr);
-                    } else {
-                     		$arr = ["status" => "false", "message" => "Error 304, retry in a few minutes :("];
-    				 		echo json_encode($arr);
-                    }
-                }else{
-                     $arr = ["status" => "false", "message" => "Error 303, retry in a few minutes :("];
-    				 echo json_encode($arr);
-                }
+                // If the password is incorrect, return an error response
+                $arr = ["status" => "wrong", "message" => "Oops! Wrong password!"];
+                echo json_encode($arr);
             }
         }
-    }else{
-        	$arr = ["status" => "false", "message" => "ALARM 406: ACTIVE PROTECTION, IP SAVED"];
-    		echo json_encode($arr);
+    } else {
+        // If the email or password is empty, return an error response
+        $arr = ["status" => "false", "message" => "ALARM 406: ACTIVE PROTECTION, IP SAVED"];
+        echo json_encode($arr);
     }
-}
-else{
-	$arr = ["status" => "false", "message" => "ALARM 405: ACTIVE PROTECTION, IP SAVED"];
+} else {
+    // If the request method is not POST, return an error response
+    $arr = ["status" => "false", "message" => "ALARM 405: ACTIVE PROTECTION, IP SAVED"];
     echo json_encode($arr);
 }
-
-?>

@@ -11,6 +11,12 @@ require_once __DIR__.'/database.php';
 require_once __DIR__.'/session.php';
 
 $db = new dbData();
-
+$initialise_connection = json_decode($db->connect(), true);
+if (!$initialise_connection['status']) {   
+    
+    echo $twig->render('connerror.html');
+    exit;
+    //Error is in: $connection['message'];
+}
 
 ?>

@@ -8,7 +8,7 @@
 * @info Me (Gioele) am going to use the SNAKE CASE for the php files
 */
 
-function clean_input($data) {
+function clean_input($db, $data) {
     // Check if data is an array
     if (is_array($data)) {
         // If it is clean every member of the array
