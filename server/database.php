@@ -3,7 +3,7 @@
 * database
 *
 * @author Gioele Giunta
-* @version 1.0
+* @version 1.3
 * @since 2023-04-29
 * @info Me (Gioele) am going to use the SNAKE CASE for the php files
 */

@@ -39,7 +39,7 @@ require_once __DIR__ . '/server/autoload.php';
     $navbar_data = [
         'navbar_elements' => $navbar_elements,
         'page_name' => $page_name,
-        'is_authenticated' => is_authenticated()
+        'is_authenticated' => $session->is_authenticated()
         ];
     
 

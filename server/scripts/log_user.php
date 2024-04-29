@@ -35,13 +35,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Check if the password is correct
             $user_row = mysqli_fetch_array($email_result);
             if ($user_row['password'] == hash_crypt($password)) {
-                // If the email and password are correct, set the session variables
-                $_SESSION['id'] = $user_row['ID'];
-                $_SESSION['name'] = $user_row['name'];
-                $_SESSION['surname'] = $user_row['surname'];
-                $_SESSION['email'] = $user_row['email'];
-                $_SESSION['password'] = $user_row['password'];
-                $_SESSION['role'] = $user_row['role'];
+                // If the email and password are correct, set the session variables using methods
+                $session->save_data($user_row);
+                $cookies->save_data($user_row);
                 $arr = ["status" => "true", "message" => "Success"];
                 echo json_encode($arr);
             } else {
