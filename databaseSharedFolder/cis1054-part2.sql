@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Apr 29, 2024 alle 12:57
+-- Creato il: Apr 29, 2024 alle 13:01
 -- Versione del server: 10.4.28-MariaDB
 -- Versione PHP: 8.2.4
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `cis1054-part2`
 --
+CREATE DATABASE IF NOT EXISTS `cis1054-part2` DEFAULT CHARACTER SET latin2 COLLATE latin2_bin;
+USE `cis1054-part2`;
 
 -- --------------------------------------------------------
 
@@ -27,6 +29,7 @@ SET time_zone = "+00:00";
 -- Struttura della tabella `categories`
 --
 
+DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
   `ID` int(11) NOT NULL,
   `name` text NOT NULL,
@@ -39,6 +42,7 @@ CREATE TABLE `categories` (
 -- Struttura della tabella `foods`
 --
 
+DROP TABLE IF EXISTS `foods`;
 CREATE TABLE `foods` (
   `ID` int(11) NOT NULL,
   `categories_ID` int(11) NOT NULL,
@@ -57,6 +61,7 @@ CREATE TABLE `foods` (
 -- Struttura della tabella `reservations`
 --
 
+DROP TABLE IF EXISTS `reservations`;
 CREATE TABLE `reservations` (
   `ID` int(11) NOT NULL,
   `users_ID` int(11) NOT NULL,
@@ -71,6 +76,7 @@ CREATE TABLE `reservations` (
 -- Struttura della tabella `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `ID` int(11) NOT NULL,
   `name` text NOT NULL,
@@ -86,6 +92,7 @@ CREATE TABLE `users` (
 -- Struttura della tabella `wishlists`
 --
 
+DROP TABLE IF EXISTS `wishlists`;
 CREATE TABLE `wishlists` (
   `ID` int(11) NOT NULL,
   `users_ID` int(11) NOT NULL,
