@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Apr 28, 2024 alle 21:02
+-- Creato il: Apr 29, 2024 alle 12:57
 -- Versione del server: 10.4.28-MariaDB
 -- Versione PHP: 8.2.4
 
@@ -76,7 +76,8 @@ CREATE TABLE `users` (
   `name` text NOT NULL,
   `surname` text NOT NULL,
   `email` text NOT NULL,
-  `password` text NOT NULL
+  `password` text NOT NULL,
+  `role` set('user','moderator','admin','') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2 COLLATE=latin2_bin;
 
 -- --------------------------------------------------------
