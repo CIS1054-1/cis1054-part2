@@ -1,31 +1,59 @@
 <?php 
-
+/**
+* database
+*
+* @author Gioele Giunta
+* @version 1.0
+* @since 2023-04-29
+* @info Me (Gioele) am going to use the SNAKE CASE for the php files
+*/
 
  class dbData {
     // The database connection
     protected static $connection;
-    
     /**
      * Connect to the database
      * 
      * @return bool false on failure / mysqli MySQLi object instance on success
      */
-    public function connect() {
-        
+    public function connect() {   
+        $return = [];  
+        $error;   
         // Try and connect to the database
         if(!isset(self::$connection)) {
             // Load configuration as an array. Use the actual location of your configuration file
             // Put the configuration file outside of the document root
-            $config = parse_ini_file('./config.ini'); 
-            self::$connection = new mysqli($config['server'],$config['username'],$config['password'],$config['dbname']);
+            $config = parse_ini_file('config.ini'); 
+            try {
+              self::$connection = new mysqli($config['server'],$config['username'],$config['password'],$config['dbname']);
+              // Check if the connection was successful
+                if (self::$connection->connect_error) {
+                    throw new Exception("Connection failed: " . self::$connection->connect_error);
+                }
+            } catch (Exception $e) {
+                // Handle the connection error
+                self::$connection = false;
+                
+                // Log the error or handle it in another way
+                $error=  $e->getMessage();
+
+            }
         }
     
         // If connection was not successful, handle the error
         if(self::$connection === false) {
-            // Handle error - notify administrator, log to a file, show an error screen, etc.
-            return false;
+            // Handle errormysqli_connect_error 
+            $return = [
+                'status' => false,
+                'message' => $error,
+            ];
+            return json_encode($return);
         }
-        return self::$connection;
+        $return = [
+            'status' => true,
+            'message' => self::$connection,
+        ];
+        return json_encode($return);
     }
 
     /**

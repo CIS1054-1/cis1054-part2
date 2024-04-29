@@ -1,4 +1,13 @@
 <?php
+/**
+* utilis
+*
+* @author Gioele Giunta
+* @version 1.0
+* @since 2023-04-29
+* @info Me (Gioele) am going to use the SNAKE CASE for the php files
+*/
+
 function clean_input($data) {
     // Check if data is an array
     if (is_array($data)) {

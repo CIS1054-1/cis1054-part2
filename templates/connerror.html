@@ -1,0 +1,24 @@
+{#
+    * connerror
+    *
+    * @author Gioele Giunta
+    * @version 1.0
+    * @since 2023-04-29
+    * @info Me (Gioele) am going to use the CAMEL CASE for the html/twig files
+#}
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Element not found!
+{% endblock %}
+
+{% block content %}
+    <main>
+        <div class="text-box">
+            <h1>Such a Doggone Shame!</h1>
+            <p>Our database is not working well, sorry :(</p>
+        </div>
+        <img src="./assets/img/dberror.jpg">
+    </main>
+{% endblock %}

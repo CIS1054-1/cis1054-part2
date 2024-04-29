@@ -26,6 +26,9 @@ Los Pollos Hermanos
     <section class="white-bar">
         <h1>Taste the world!</h1>
         <p>These are the cuisines you will find at Pollos Hermanos, click on them to see the dishes.</p>
+        {% if db == false %}
+        <p>Porco dio</p>
+        {% endif %}
         {% block foodSlider %}
         {% include "foodslider.html" with {'categories' : categories, 'selectedCategories' : selectedCategories} %}
         {% endblock %}

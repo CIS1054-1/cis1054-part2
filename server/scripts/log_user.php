@@ -1,5 +1,14 @@
 <?php
-include "../../script/start.php";
+/**
+* log_user
+*
+* @author Gioele Giunta
+* @version 1.0
+* @since 2023-04-29
+* @info Me (Gioele) am going to use the SNAKE CASE for the php files
+*/
+require_once __DIR__.'../autoload.php';
+
 header('Content-Type: application/json');
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -8,17 +17,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = mysqli_real_escape_string($conn, $input['email']);
     $password = mysqli_real_escape_string($conn, $input['password']);
 
+    
     if (!empty($email) && !empty($password)) {
 
 
-        //Verifica EMAIL
+        //Check EMAIL
         $email_query = "SELECT id FROM users WHERE email='$email'";
         $email_result = mysqli_query($conn, $email_query);
         if (mysqli_num_rows($email_result) == 0) {
             $arr = ["status" => "wrong", "message" => "Oops! Wrong email!"];
     		echo json_encode($arr);
         } else {
-            //Verifica PASSWORD
+            //Check PASSWORD
             $password_query = "SELECT * FROM users WHERE email = '$email' AND password = " . hash_crypt($password) . "";
 
             $password_result = mysqli_query($conn, $password_query);
@@ -68,4 +78,4 @@ else{
     echo json_encode($arr);
 }
 
-?>
+?>

@@ -1,5 +1,14 @@
 <?php
-include "../../script/start.php";
+/**
+* register_us
+*
+* @author Gioele Giunta
+* @version 1.0
+* @since 2023-04-29
+* @info Me (Gioele) am going to use the SNAKE CASE for the php files
+*/
+require_once __DIR__.'../autoload.php';
+
 header('Content-Type: application/json');
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {

@@ -10,4 +10,14 @@ $loader = new \Twig\Loader\FilesystemLoader(__DIR__.'/templates');
 // Instantiate our Twig. 
 $twig = new \Twig\Environment($loader);
 
+$connection = json_decode($db->connect(), true);
+
+if (!$connection['status']) {    
+    echo $twig->render('connerror.html');
+    exit;
+    //Error is in: $connection['message'];
+}
+
+
+
 ?>

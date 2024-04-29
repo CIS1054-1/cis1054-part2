@@ -41,7 +41,6 @@
 
     /*
     if(isset($_GET['id'])){
-        $db = new Db();
         $categoryId = $db-> quote($_GET['id']);
 
         $result = $db-> select("SELECT i.*,c.name as type FROM item i inner join category c on i.type=c.id WHERE i.id=". $categoryId);
