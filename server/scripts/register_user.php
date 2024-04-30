@@ -1,103 +1,79 @@
 <?php
 /**
-* register_us
-*
-* @author Gioele Giunta
-* @version 1.0
-* @since 2023-04-29
-* @info Me (Gioele) am going to use the SNAKE CASE for the php files
-*/
-require_once __DIR__.'../autoload.php';
+ * register_us
+ *
+ * This script handles the user registration process.
+ *
+ * @author Gioele Giunta
+ * @version 1.0
+ * @since 2023-04-29
+ * @info Me (Gioele) am going to use the SNAKE CASE for the php files
+ */
 
+require_once __DIR__ . '../autoload.php';
+
+// Set the Content-Type header to indicate that the response is in JSON format
 header('Content-Type: application/json');
 
-if($_SERVER["REQUEST_METHOD"] == "POST") {
+// Check if the request method is POST
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get the request body as JSON
     $inputJSON = file_get_contents('php://input');
     $input = json_decode($inputJSON, TRUE);
-    $name = mysqli_real_escape_string($conn, $input['name']);
-    $username = mysqli_real_escape_string($conn, $input['username']);
-    $email = mysqli_real_escape_string($conn, $input['email']);
-    $password = mysqli_real_escape_string($conn, $input['password']);
-    $age = mysqli_real_escape_string($conn, $input['age']);
-    $referral_user = mysqli_real_escape_string($conn, $input['referral_user']);
 
-    if (!empty($name) && !empty($username) && !empty($email) && !empty($password) && !empty($age) && !empty($referral_user)) {
+    // Escape the user input values to prevent SQL injection
+    $name = $db->quote($input['name']);
+    $surname = $db->quote($input['surname']);
+    $email = $db->quote($input['email']);
+    $password = $db->quote($input['password']);
 
-        $referral_id = strval(time()) + strval(rand(0, 9));
+    // Check if all required fields are not empty
+    if (!empty($name) && !empty($surname) && !empty($email) && !empty($password)) {
 
-        if ($referral_user != null && $referral_user != "null") {
-            $signup_query = "INSERT INTO users (name, username, email, password, age, referral_id, referral_user)
-            VALUES('$name', '$username', '$email', " . hash_crypt($password) . ", '$age', $referral_id, $referral_user)";
-        } else {
-            $signup_query = "INSERT INTO users (name, username, email, password, age, referral_id)
-            VALUES('$name', '$username', '$email', " . hash_crypt($password) . ", '$age', $referral_id)";
-        }
-        //Verifica username
-        $username_query = "SELECT ID FROM users WHERE username='$username'";
-        $username_result = mysqli_query($conn, $username_query);
-        if (mysqli_num_rows($username_result) == 0) {
-            //Verifica email
-            $email_query = "SELECT ID FROM users WHERE email='$email'";
-            $email_result = mysqli_query($conn, $email_query);
-            if (mysqli_num_rows($email_result) == 0) {
-                //Registrazione utente
 
-                $signup_result = mysqli_query($conn, $signup_query);
-                if ($signup_result) {
-                    $password_query = "SELECT * FROM users WHERE username = '$username' AND password = " . hash_crypt($password) . "";
+            $signup_query = "INSERT INTO users (name, surname, email, password) VALUES($name, $surname, $email, " . hash_crypt($password) . ")";
 
-                    $password_result = mysqli_query($conn, $password_query);
-                    if (mysqli_num_rows($password_result) == 0) {
-                     	$arr = ["status" => "false", "message" => "Error 404, retry in a few minutes :("];
-    				 	echo json_encode($arr);
-                    } else {
-
-                        $user_row=mysqli_fetch_array($password_result);
-                        $id = $user_row['ID'];
-                        $id = hash_crypt($id);
-                        $register_users_session_result= mysqli_query($conn, "INSERT INTO users_sessions (user_id, session_id) VALUES($id, '" . session_id() . "')");
-
-                        if(/*$register_cash_wallet_result && $register_network_wallet_result &&*/ $register_users_session_result){
-                            $_SESSION['id'] = $user_row['ID'];
-                            $_SESSION['name'] = $user_row['name'];
-                            $_SESSION['username'] = $user_row['username'];
-                            $_SESSION['email'] = $user_row['email'];
-                            $_SESSION['password'] = $user_row['password'];
-                            $_SESSION['img_url'] = $user_row['img_url'];
-                            $_SESSION['description'] = $user_row['description'];
-                            $_SESSION['referral_id'] = $user_row['referral_id'];
-                            if($referral_user != null && $referral_user != "null"){
-                                $_SESSION['referral_user'] = $user_row['referral_user'];
-                            }else{
-                                $_SESSION['referral_user'] = "null";
-                            }
-                     		$arr = ["status" => "true", "message" => "Success", "sessionID" => session_id()];
-    				 		echo json_encode($arr);
-                        }else{
-                            $delete_result = mysqli_query($conn, "DELETE FROM users where id= $id");
-                     		$arr = ["status" => "false", "message" => "Error 404, retry in a few minutes :("];
-    				 		echo json_encode($arr);
-                        }
-                    }
+        // Check if the email is already registered
+        $email_query = "SELECT ID FROM users WHERE email=$email";
+        $email_result = $db->query($email_query);
+        if (mysqli_num_rows($email_result) == 0) {
+            // Register the user
+            $signup_result = $db->query($signup_query);
+            if ($signup_result) {
+                // Verify the user's credentials again
+                $password_query = "SELECT * FROM users WHERE email = $email AND password = " . hash_crypt($password) . "";
+                $password_result = $db->query($password_query);
+                if (mysqli_num_rows($password_result) == 0) {
+                    // If the credentials are incorrect, return an error response
+                    $arr = ["status" => "false", "message" => "Error 404, retry in a few minutes :("];
+                    echo json_encode($arr);
                 } else {
-                     $arr = ["status" => "false", "message" => "Error 404, retry in a few minutes :("];
-    				 echo json_encode($arr);
+                    $user_row = mysqli_fetch_array($password_result);
+                    // If the credentials are correct, set the session variables using methods
+                    $session->save_data($user_row);
+                    $cookies->save_data($user_row);
+                    $arr = ["status" => "true", "message" => "Success"];
+                    echo json_encode($arr);
                 }
             } else {
-                $arr = ["status" => "false", "message" => "Email in use: Try logging in"];
-    			echo json_encode($arr);
+                // If the user registration fails, return an error response
+                $arr = ["status" => "false", "message" => "Error 404, retry in a few minutes :("];
+                echo json_encode($arr);
             }
+
         } else {
-            $arr = ["status" => "false", "message" => "Username already taken :("];
-    		echo json_encode($arr);
+                // If the email is already registered, return an error response
+                $arr = ["status" => "false", "message" => "Email in use: Try logging in"];
+                echo json_encode($arr);
         }
     } else {
-        	$arr = ["status" => "false", "message" => "ALARM 406: ACTIVE PROTECTION, IP SAVED"];
-    		echo json_encode($arr);
+        // If any required field is empty, return an error response
+        $arr = ["status" => "false", "message" => "ALARM 406: ACTIVE PROTECTION, IP SAVED"];
+        echo json_encode($arr);
     }
-}else{
-	$arr = ["status" => "false", "message" => "ALARM 405: ACTIVE PROTECTION, IP SAVED"];
+} else {
+    // If the request method is not POST, return an error response
+    $arr = ["status" => "false", "message" => "ALARM 405: ACTIVE PROTECTION, IP SAVED"];
     echo json_encode($arr);
 }
-
 ?>

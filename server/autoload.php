@@ -7,6 +7,7 @@
 * @since 2023-04-29
 * @info Me (Gioele) am going to use the SNAKE CASE for the php files
 */
+require_once __DIR__.'/utilis.php';
 require_once __DIR__.'/database.php';
 require_once __DIR__.'/session.php';
 require_once __DIR__.'/cookies.php';
@@ -22,5 +23,6 @@ if (!$initialise_connection['status']) {
 
 $cookies = new Cookies();
 $session = new Session();
+
 
 ?>

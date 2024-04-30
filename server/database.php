@@ -77,23 +77,6 @@
     }
 
     /**
-     * Fetch rows from the database (SELECT query)
-     *
-     * @param $query The query string
-     * @return bool False on failure / array Database rows on success
-     */
-    public function select($query) {
-        $rows = array();
-        $result = $this -> query($query);
-        if($result === false) {
-            return false;
-        }
-        while ($row = $result -> fetch_assoc()) {
-            $rows[] = $row;
-        }
-        return $rows;
-    }
-    /**
      * Fetch the last error from the database
      * 
      * @return string Database error message
