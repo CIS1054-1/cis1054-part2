@@ -679,7 +679,11 @@ footer {
 
 .profile-image{
   max-width: 50px;
+  margin-top: -30%;
+  cursor: pointer;
 }
+
+
 
 ul, li, ol {
   list-style-type: none;

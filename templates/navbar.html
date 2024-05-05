@@ -12,7 +12,12 @@
     {% for item in navbarData.navbar_elements %}
     {% if item.href == 'signin' %}
         {% if navbarData.is_authenticated %}
-            <li><img id="profile_image" class="rounded-circle profile-image" style="width: 120%; margin-top: -12%"></li>
+            <li>
+                <img id="profile_image" class="rounded-circle profile-image">
+                <ul class="dropdown-menu" style="position: absolute; z-index: 101;">
+                    <li><a href="#">Log Out</a></li>
+                </ul>
+            </li>
             <script>
                 document.addEventListener("DOMContentLoaded", function() {
                     document.getElementById("profile_image").src = generateAvatar("{{ navbarData.user_acronym }}", "#FFFFFF", genColor("{{ navbarData.user_acronym }}"));
