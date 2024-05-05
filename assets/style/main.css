@@ -660,6 +660,22 @@ div.field-container{
   transform: translateY(10%) scale(1.1);
 }
 
+/* Casual Things */
+
+.rounded-circle {
+  border-radius: 50% !important;
+}
+
+.width-80p{
+  max-width: 80px;
+}
+
+.profile-image{
+  max-width: 50px;
+  margin-top: -30%;
+  cursor: pointer;
+}
+
 /* Footer*/
 
 footer {
@@ -673,15 +689,6 @@ footer {
   margin-bottom: 0;
 }
 
-.rounded-circle {
-  border-radius: 50% !important;
-}
-
-.profile-image{
-  max-width: 50px;
-  margin-top: -30%;
-  cursor: pointer;
-}
 
 
 

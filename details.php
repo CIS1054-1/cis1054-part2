@@ -1,58 +1,40 @@
 <?php
 /**
-* Details
-*
-* @author Gioele Giunta
-* @version 1.0
-* @since 2023-04-25
-* @info Me (Gioele) am going to use the SNAKE CASE for the php files
-*/
-    require_once __DIR__ . '/bootstrap.php';
-    require_once __DIR__ . '/navbar.php';
-    require_once __DIR__ . '/foodslider.php';
+ * Details
+ *
+ * @author Gioele Giunta
+ * @version 1.0
+ * @since 2023-04-25
+ * @info Me (Gioele) am going to use the SNAKE CASE for the php files
+ */
+require_once __DIR__ . '/bootstrap.php';
+require_once __DIR__ . '/navbar.php';
+require_once __DIR__ . '/foodslider.php';
 
-    //MockUp
-    $details = 
-        [
-            'id' => 1,
-            'name' => 'Pizza Margharita',
-            'image'=> 'senior_chicken.png',
-            'ingredients' => 'Pizza with tomato souce, mozzarella fiordilatte & basilic powder',
-            'category' => 'Pizza',
-            'allergies' => ['Nuts', 'Milk'],    
-            'price' => 10.99,
-            'timeOfPreparation' => 10,
-        ];
-    
+// Check if id is set in the GET parameters
+if(isset($_GET['id'])){
+    // Initialize the database connection
+    $db = new dbData();
+
+    // Fetch the details of the food item from the database
+    $selectedId = $db->quote($_GET['id']);
+    $query = "SELECT * FROM foods WHERE id = $selectedId";
+    $result = $db->query($query);
+
+    // Check if the query was successful and if there are any results
+    if($result && $result->num_rows > 0) {
+        // Fetch the details as an associative array
+        $details = $result->fetch_assoc();
+        $details['allergies'] = json_decode($details['allergies']);
+
+        // Render the details page with the fetched data
         echo $twig->render('details.html', ['navbar_data' => $navbar_data, 'details'=> $details]);
-
-    /*
-    if(isset($_GET['id'])){
-    $db = new Db();
-    $selectedCategories = $db-> quote($_GET['id']);
-    $selectedCategories = json_decode($selectedCategories);
-    $result = $db-> select("SELECT i.*,c.name as type FROM item i inner join category c on i.type=c.id WHERE i.id=". $selectedCategories);
-    
-        
-    if(count($result) > 0){
-        $details = [
-            'id'                => $result[0]['id'],
-            'category'          => $result[0]['category'],
-            'image'             => $result[0]['image'],
-            'name'              => $result[0]['name'],
-            'ingredients'       => $result[0]['ingredients'],
-            'price'             => $result[0]['price'],
-            'bio'               => $result[0]['bio'],
-            'allergies'         => $result[0]['allergies'],
-            'timeOfPreparation' => $result[0]['time'],
-        ];
-             echo $twig->render('details.html', ['navbar_data' => $navbar_data, 'details'=> $details]);
-         }else{
-             echo $twig->render('404.html');
-        }
-    }  else{
+    } else {
+        // If no results were found, render the 404 page
         echo $twig->render('404.html');
     }
-*/
-
+} else {
+    // If id is not set in the GET parameters, render the 404 page
+    echo $twig->render('404.html');
+}
 ?>

@@ -28,6 +28,9 @@
                 <div class="field-container">
                     <h1 class="font-40p">{{details.name}}</h1>
                     <p class="font-20p">{{details.ingredients}}</p>
+                    {% if details.bio == 1 %}
+                    <img src="assets/img/bio_certified.png" class="rounded-circle width-80p"/>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -35,7 +38,7 @@
     <section class="gray-bar">
             <h1 class="font-40p">Nutritional Information</h1>
             <div class="open-list">
-                <h3 class="open-title font-20p">View Ingredients & Allergens<span class="arrow">▼</span></h3>
+                <h3 class="open-title font-20p">View Allergens<span class="arrow">▼</span></h3>
                 <ul class="open-content" style="display: none;">
                     {% for item in details.allergies %}  
                         <li class="content">{{item}}</li>
@@ -45,6 +48,14 @@
 Gluten (Oats), Gluten (Spelt), Gluten (Kamut), Crustaceans, Fish, Peanuts, Tree Nuts (Almonds), Tree Nuts (Hazelnuts), Tree Nuts (Pistachio nuts), Tree Nuts (Walnuts), Tree Nuts (Brazil nuts) , Tree Nuts (Cashews), Tree Nuts (Macadamia), Tree Nuts (Queensland nuts), Tree Nuts (Pecan nuts), Celery, Mustard, Sulphur Dioxide, Lupins or Molluscs></p>
                     </li>                
                 </ul>
+                {% if details.bio == 1 %}
+                <h3 class="open-title font-20p">See what it means to be BIO<span class="arrow">▼</span></h3>
+                <ul class="open-content" style="display: none;">
+                        <li class="content">Being <strong>BIO</strong> does not only mean having the BIO label, it means having a <strong>love</strong> for food and finding suppliers who are committed to respecting the earth and people.
+                            With km0 quality vegetables and meat.
+                        </li>           
+                </ul>
+                {% endif %}
             </div>
     </section>
     <script src="assets/js/openList.js"></script>
