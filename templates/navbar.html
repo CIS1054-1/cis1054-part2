@@ -12,11 +12,14 @@
     {% for item in navbarData.navbar_elements %}
     {% if item.href == 'signin' %}
         {% if navbarData.is_authenticated %}
-            {% if item.href == navbarData.page_name %}
-            <li class="active"><a href="{{item.href}}">{{item.name}}</a></li>
-            {% else %}
-            <li><a href="{{item.href}}">{{item.name}}</a></li>
-            {% endif %}
+            <li><img id="profile_image" class="rounded-circle profile-image" style="width: 120%; margin-top: -12%"></li>
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    document.getElementById("profile_image").src = generateAvatar("{{ navbarData.user_acronym }}", "#FFFFFF", genColor("{{ navbarData.user_acronym }}"));
+                });
+            </script>
+            <script type="text/javascript" src="assets/js/genColor.js"></script>
+            <script type="text/javascript" src="assets/js/generateAvatar.js"></script>
         {% else %}
             {% if item.href == navbarData.page_name %}
             <li class="active"><a href="{{item.href}}">{{item.name}}</a></li>

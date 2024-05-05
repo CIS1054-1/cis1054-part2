@@ -36,10 +36,16 @@ require_once __DIR__ . '/server/autoload.php';
         ]
     ];
 
+    $user_acronym = "";
+    if($session->is_authenticated()){
+        $user_acronym = strtoupper(substr($_SESSION['name'], 0, 1)) . strtoupper(substr($_SESSION['surname'], 0, 1));
+    }
+    
     $navbar_data = [
         'navbar_elements' => $navbar_elements,
         'page_name' => $page_name,
-        'is_authenticated' => $session->is_authenticated()
+        'is_authenticated' => $session->is_authenticated(),
+        'user_acronym' => $user_acronym
         ];
     
 

@@ -673,6 +673,14 @@ footer {
   margin-bottom: 0;
 }
 
+.rounded-circle {
+  border-radius: 50% !important;
+}
+
+.profile-image{
+  max-width: 50px;
+}
+
 ul, li, ol {
   list-style-type: none;
 }
