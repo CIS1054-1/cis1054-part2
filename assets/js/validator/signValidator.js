@@ -10,8 +10,8 @@
 // Select the necessary elements
 const emailInput = document.getElementById('email-input');
 const passwordInput = document.getElementById('password-input');
-const nameInput = document.getElementById('name-input');
-const surnameInput = document.getElementById('surname-input');
+let nameInput = document.getElementById('name-input');
+let surnameInput = document.getElementById('surname-input');
 const submitButton = document.getElementById('submit');
 const signLink = submitButton.getAttribute('href');
 const emailErrorMessage = document.getElementById('email-error');
@@ -28,6 +28,10 @@ const generalErrorMessage = document.getElementById('general-error');
 * return bool
 */
 function validateName() {
+  //To avoid that during sign in throwns an error
+  if(nameInput == undefined){
+    return true;
+  }
   //Required check
   if(nameInput.value.length == 0){
   //Change the name-error classed p
@@ -48,6 +52,10 @@ function validateName() {
 * return bool
 */
 function validateSurname() {
+    //To avoid that during sign in throwns an error
+    if(surnameInput == undefined){
+      return true;
+    }
   //Required check
   if(surnameInput.value.length == 0){
   //Change the surname-error classed p
@@ -127,8 +135,8 @@ submitButton.addEventListener('click', (event) => {
     // Perform an AJAX call to the PHP script linked in the button
     const recipeUrl = 'server/scripts/' + signLink;
             const postBody = {
-              name: nameInput.value,
-              surname: surnameInput.value,
+              name: nameInput ? nameInput.value : "",
+              surname: surnameInput ? surnameInput.value : "",
               email: emailInput.value.toLowerCase(),
               password: passwordInput.value
             };

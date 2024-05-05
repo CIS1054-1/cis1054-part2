@@ -7,7 +7,7 @@
  * @since 2023-04-29
  * @info Me (Gioele) am going to use the SNAKE CASE for the php files
  */
-require_once __DIR__ . '../../bootstrap.php';
+require_once __DIR__ . '/../autoload.php';
 
 // Set the Content-Type header to indicate that the response is in JSON format
 header('Content-Type: application/json');
@@ -33,8 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo json_encode($arr);
         } else {
             // Check if the password is correct
-            $user_row = mysqli_fetch_array($email_result);
-            if ($user_row['password'] == hash_crypt($password)) {
+            $user_row = mysqli_fetch_assoc($email_result);
+            if ("'" . $user_row['password'] . "'" == hash_crypt($password)) {
                 // If the email and password are correct, set the session variables using methods
                 $session->save_data($user_row);
                 $cookies->save_data($user_row);
