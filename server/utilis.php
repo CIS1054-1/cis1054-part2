@@ -25,7 +25,7 @@ function clean_input($db, $data) {
 
 
 function hash_crypt($string){
-    return "SHA384(SHA256(MD5('" . $string . "')))";
+    return "'" . hash('sha384', hash('sha256', md5($string))) . "'";
 }
 
   ?>

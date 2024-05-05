@@ -10,11 +10,13 @@
 
 class Session
 {
+    
     /**
      * Initializes the session if it hasn't been started already.
      */
     public static function start()
     {
+        $cookies = new Cookies();
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
             //Check if the cookies are loaded

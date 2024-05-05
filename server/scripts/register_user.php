@@ -10,7 +10,7 @@
  * @info Me (Gioele) am going to use the SNAKE CASE for the php files
  */
 
-require_once __DIR__ . '../autoload.php';
+require_once __DIR__ . '/../autoload.php';
 
 // Set the Content-Type header to indicate that the response is in JSON format
 header('Content-Type: application/json');
@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get the request body as JSON
     $inputJSON = file_get_contents('php://input');
     $input = json_decode($inputJSON, TRUE);
-
+    
     // Escape the user input values to prevent SQL injection
     $name = $db->quote($input['name']);
     $surname = $db->quote($input['surname']);
@@ -29,9 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Check if all required fields are not empty
     if (!empty($name) && !empty($surname) && !empty($email) && !empty($password)) {
-
-
-            $signup_query = "INSERT INTO users (name, surname, email, password) VALUES($name, $surname, $email, " . hash_crypt($password) . ")";
+        $signup_query = "INSERT INTO users (name, surname, email, password, role) VALUES($name, $surname, $email, " . hash_crypt($password) . ", 'user')";
 
         // Check if the email is already registered
         $email_query = "SELECT ID FROM users WHERE email=$email";
@@ -48,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $arr = ["status" => "false", "message" => "Error 404, retry in a few minutes :("];
                     echo json_encode($arr);
                 } else {
-                    $user_row = mysqli_fetch_array($password_result);
+                    $user_row = mysqli_fetch_assoc($password_result);
                     // If the credentials are correct, set the session variables using methods
                     $session->save_data($user_row);
                     $cookies->save_data($user_row);

@@ -13,11 +13,12 @@ const passwordInput = document.getElementById('password-input');
 const nameInput = document.getElementById('name-input');
 const surnameInput = document.getElementById('surname-input');
 const submitButton = document.getElementById('submit');
-//const signLink = document.querySelector('p a[href="sign"]');
+const signLink = submitButton.getAttribute('href');
 const emailErrorMessage = document.getElementById('email-error');
 const passwordErrorMessage = document.getElementById('password-error');
 const nameErrorMessage = document.getElementById('name-error');
 const surnameErrorMessage = document.getElementById('surname-error');
+const generalErrorMessage = document.getElementById('general-error');
 
 
 
@@ -124,16 +125,37 @@ submitButton.addEventListener('click', (event) => {
   event.preventDefault();
   if (validateEmail() && validatePassword() && validateName() && validateSurname()) {
     // Perform an AJAX call to the PHP script linked in the button
-    fetch('server/scripts/log_user.php', {
-      method: 'POST',
-      body: new FormData(document.forms.myform)
-    })
-    .then(response => {
-      // Handle the response from the PHP script
-      console.log(response);
-    })
-    .catch(error => {
-      console.error('Error in AJAX call:', error);
-    });
+    const recipeUrl = 'server/scripts/' + signLink;
+            const postBody = {
+              name: nameInput.value,
+              surname: surnameInput.value,
+              email: emailInput.value.toLowerCase(),
+              password: passwordInput.value
+            };
+            const requestMetadata = {
+                method: 'POST',
+                headers: {
+                  Accept: 'application/json',
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(postBody)
+            };
+            fetch(recipeUrl, requestMetadata)
+                .then((response) => {
+                    //console.log("Headers:", response.headers);
+                    return response.json(); 
+                })
+                .then((responseData) => {
+                    console.log("Response:", responseData);
+                    if (responseData.status === "true") {
+                      location.href = "index.php";
+                    } else {
+                      generalErrorMessage.textContent = responseData.message;
+                    }
+                })
+                .catch((err) => {
+                    console.info('Error:', err.message);
+                    //setErrorText(err.message);
+                });
   }
 });

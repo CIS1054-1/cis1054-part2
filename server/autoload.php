@@ -9,8 +9,11 @@
 */
 require_once __DIR__.'/utilis.php';
 require_once __DIR__.'/database.php';
-require_once __DIR__.'/session.php';
 require_once __DIR__.'/cookies.php';
+$cookies = new Cookies();
+require_once __DIR__.'/session.php';
+$session = new Session();
+$session->start();
 
 $db = new dbData();
 $initialise_connection = json_decode($db->connect(), true);
@@ -21,8 +24,8 @@ if (!$initialise_connection['status']) {
     //Error is in: $initialise_connection['message'];
 }
 
-$cookies = new Cookies();
-$session = new Session();
+
+
 
 
 ?>

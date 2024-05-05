@@ -49,10 +49,9 @@
             ];
         }else{
             //Set $connection to the connection of the instance
-            $connection = self::$connection;
             $return = [
                 'status' => true,
-                'message' => self::$connection,
+                'message' => $this->connectionToArray(self::$connection),
             ];
         }
 
@@ -68,12 +67,10 @@
      */
     public function query($query) {
         // Connect to the database
-        $connection = $this -> connect();
-        
+        $connection_initializer = $this -> connect();
+
         // Query the database
-        $result = $connection -> query($query);
-        
-        return $result;
+        return self::$connection -> query($query);  
     }
 
     /**
@@ -87,14 +84,36 @@
     }
 
     /**
+     * Convert mysql connection in associative array
+     * 
+     * @param mysqli $connection
+     * @return array
+     */
+    private function connectionToArray(mysqli $connection) {
+        $connectionArray = [];
+        foreach ($connection as $key => $value) {
+            $connectionArray[$key] = $value;
+        }
+        return $connectionArray;
+    }
+
+    /**
      * Quote and escape value for use in a database query
      *
      * @param string $value The value to be quoted and escaped
      * @return string The quoted and escaped string
-     */
+    */
     public function quote($value) {
-        $connection = $this -> connect();
-        return "'" . $connection -> mysqli_real_escape_string($value) . "'";
+        // Connect to the database
+        $connection_initializer = json_decode($this->connect(), true);
+
+        // Check if the connection was successful
+        if ($connection_initializer['status']) {
+            return "'" . self::$connection->real_escape_string($value) . "'";
+        } else {
+            // If the connection failed, return the value as is
+            return $value;
+        }
     }
 }
 
