@@ -676,6 +676,18 @@ div.field-container{
   cursor: pointer;
 }
 
+
+/* Cookie Banner */
+#cookie-banner {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  background-color: white;
+  color: var(--black);
+  padding: 10px;
+  text-align: center;
+}
+
 /* Footer*/
 
 footer {
