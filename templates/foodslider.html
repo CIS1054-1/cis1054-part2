@@ -12,10 +12,10 @@
     <div class="slider-prev">&lt;</div>
     <ul class="slider-container">
         {% for category in categories %}
-            <a class="slide" href="item?id={{category.id}}">
+            <a class="slide" href="item?id={{category.ID}}">
                 <div class="slide-name flex-row">
                     {% for selectedCategory in selectedCategories %}
-                    {% if category.id == selectedCategory %}
+                    {% if category.ID == selectedCategory %}
                     <h1 class="font-40p green">&#x2713;</h1>
                     {% endif %}
                     {% endfor %}
