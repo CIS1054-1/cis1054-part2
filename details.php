@@ -7,6 +7,7 @@
  * @since 2023-04-25
  * @info Me (Gioele) am going to use the SNAKE CASE for the php files
  */
+
 require_once __DIR__ . '/bootstrap.php';
 require_once __DIR__ . '/navbar.php';
 require_once __DIR__ . '/foodslider.php';

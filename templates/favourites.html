@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Favourites
+{% endblock %}
+
+{% block navbar %}
+{% include "navbar.html" with {'navbarData' : navbar_data} %}
+{% endblock %}
+
+{% block content %}
+    <main>
+        <section class="top-bar">  
+            <img src="assets/img/dogmburger.png"/>
+            <div>
+                <h1>Favourites</h1>
+            </dib>
+        </section>
+        <div style="margin-top: 50px;"></div>
+        <section class="white-bar">
+            <h1>Your Seletions</h1>
+            <div class="menu-list">
+                {% for item in favourites %}
+                    <ul style="width: 100%" id="favourite-element{{item.ID}}" class="menu-item flex-row-d">
+                        <li class="item-image">
+                            <img src="{{ item.image }}" alt="{{ item.name }}">
+                        </li>
+                        <li class="item-info flex-row-d">
+                            <div class="flex-column field-container">
+                                <h3 class="item-name">{{ item.name }}</h3>
+                                <p class="item-ingredients">{{ item.ingredients }}</p>
+                            </div>
+                        </li>
+                        <a id="favourite-btn{{item.ID}}" class="favourite-pushed" onclick="favouriteClick('favourite-btn{{item.ID}}', {{ item.ID }}, 'favourite-element{{item.ID}}')"></a>
+                    </ul>
+                {% endfor %}
+            </div>
+        </section>
+        <script src="assets/js/favouriteButtons.js"></script>
+
+    </main>
+{% endblock %}
