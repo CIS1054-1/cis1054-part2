@@ -470,6 +470,7 @@ div.field-container{
     border-bottom-right-radius: 15px;
     position: absolute;
     bottom: 0; 
+    background-color: var(--b-color);
   }
 
   .slide-body img {
@@ -536,13 +537,14 @@ div.field-container{
   height: 200px;
   background-color: var(--a-color);
   border-radius: 20px;
+  padding: 5px;
 }
 
 .item-image img {
   max-width: 100%;
-  flex-basis: 200px;
+  flex-basis: 190px;
   height: auto;
-  max-height: 200px;
+  max-height: 190px;
 }
 
 .item-info {
@@ -857,5 +859,36 @@ ul, li, ol {
       .top-bar div h1{
         font-size: 6vw;
       }
+
+      .menu-list {
+        width: 90vw;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        padding: 10px;
+      }
+      
+      .item-image {
+        width: 100%;
+        height: 170px;
+      }
+      
+      .item-image img {
+        max-width: 100%;
+        flex-basis: 160px;
+        max-height: 160px;
+      }
+      
+      .item-info {
+        width: 100%;
+      }
+      
+      .item-price {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+      }
+      
 }
   

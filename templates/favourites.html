@@ -27,7 +27,7 @@ Favourites
         </section>
         <div style="margin-top: 50px;"></div>
         <section class="white-bar">
-            <div class="menu-list">
+            <ul class="menu-list">
                 {% if is_authenticated %}
                     <h1>Your Selections</h1>
                     {% if favourites is empty %}
@@ -38,20 +38,20 @@ Favourites
                         {% endblock %}
                     {% else %}
                         {% for item in favourites %}
-                            <ul style="width: 100%" id="favourite-element{{item.ID}}" class="menu-item flex-row-d">
-                                <li class="item-image">
-                                    <img src="{{ item.image }}" alt="{{ item.name }}">
-                                </li>
-                                <li class="item-info">
+                            <li id="favourite-element{{item.ID}}" class="menu-item flex-row-d">
+                                <div class="item-image">
+                                    <img src="assets/img/menu/{{ item.image }}" alt="{{ item.name }}">
+                                </div>
+                                <div class="item-info">
                                     <a class="flex-row-d" href="details?id={{item.ID}}">
                                         <div class="flex-column field-container">
                                             <h3 class="item-name">{{ item.name }}</h3>
                                             <p class="item-ingredients">{{ item.ingredients }}</p>
                                         </div>
                                     </a>
-                                </li>
+                                </div>
                                 <a id="favourite-btn{{item.ID}}" class="favourite-pushed" onclick="favouriteClick('favourite-btn{{item.ID}}', {{ item.ID }}, 'favourite-element{{item.ID}}')"></a>
-                            </ul>
+                            </li>
                         {% endfor %}
                     {% endif %}
                 {%else %}
@@ -60,7 +60,8 @@ Favourites
                 {% endif %}
             </div>
         </section>
-        <script src="assets/js/favouriteButtons.js"></script>
 
+        <script type="text/javascript" src="assets/js/menuList.js" defer></script>
+        <script type="text/javascript" src="assets/js/favouriteButtons.js"></script>
     </main>
 {% endblock %}

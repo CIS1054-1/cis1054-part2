@@ -15,24 +15,26 @@ Los Pollos Hermanos
         {% include "foodslider.html" with {'categories' : categories, selectedCategories: selectedCategories} %}
         {% endblock %}
         <section class="gray-bar">
-            <div class="menu-list">
+            <ul class="menu-list">
                 {% for item in menuItems %}
-                    <ul style="width: 100%" class="menu-item flex-row-d">
-                        <li class="item-image">
+                    <li class="menu-item flex-row-d">
+                        <div class="item-image">
                             <img src="assets/img/menu/{{ item.image }}" alt="{{ item.name }}">
-                        </li>
-                        <li class="item-info">
+                        </div>
+                        <div class="item-info">
                             <a class="flex-row-d" href="details?id={{item.ID}}">
                                 <div class="flex-column field-container">
                                     <h3 class="item-name">{{ item.name }}</h3>
                                     <p class="item-ingredients">{{ item.ingredients }}</p>
                                 </div>
                             </a>
-                        </li>
+                        </div>
                             <div class="item-price">{{ item.price }} €</div>
-                    </ul>
+                    </li>
                 {% endfor %}
             </div>
         </section>
+
+        <script type="text/javascript" src="assets/js/menuList.js" defer></script>
     </main>
 {% endblock %}
