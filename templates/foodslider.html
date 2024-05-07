@@ -1,9 +1,18 @@
+{#
+    * Cookie
+    *
+    * @author Gioele Giunta, Carlos Alvarez
+    * @version 1.4
+    * @since 2023-05-07
+    * @info We (Gioele, Carlos) are going to use the CAMEL CASE for the html/twig files
+#}
+
 {% block foodslider %}
 <section class="slider">
     <div class="slider-prev">&lt;</div>
     <ul class="slider-container">
         {% for category in categories %}
-            <a class="slide" href="">
+            <a class="slide" href="item?id={{category.id}}">
                 <div class="slide-name flex-row">
                     {% for selectedCategory in selectedCategories %}
                     {% if category.id == selectedCategory %}

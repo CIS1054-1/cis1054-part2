@@ -16,9 +16,18 @@ if(isset($_GET['id'])){
     // Initialize the database connection
     $db = new dbData();
 
-    // Fetch the details of the food item from the database
+    $users_id;
+    //This is fundamental to avoid errors in the query. PS: the id 0 is impossible to obtain for an USER
+    if(empty($_SESSION['ID'])){
+        $users_id = 0;
+    }else{
+        $users_id = $_SESSION['ID'];
+    }
+
+    // Fetch the details of the food item from the database, also fetch if the foods with users_id is in the wishlist table
     $selectedId = $db->quote($_GET['id']);
-    $query = "SELECT * FROM foods WHERE id = $selectedId";
+    $query = "SELECT f.*, CASE WHEN w.users_ID IS NOT NULL THEN 1 ELSE 0 END AS in_wishlist FROM foods f LEFT JOIN wishlists w ON f.id = w.foods_ID AND w.users_ID = $users_id WHERE f.id = $selectedId";
+
     $result = $db->query($query);
 
     // Check if the query was successful and if there are any results

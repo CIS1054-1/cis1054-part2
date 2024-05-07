@@ -150,7 +150,6 @@ submitButton.addEventListener('click', (event) => {
             };
             fetch(recipeUrl, requestMetadata)
                 .then((response) => {
-                    //console.log("Headers:", response.headers);
                     return response.json(); 
                 })
                 .then((responseData) => {
@@ -163,7 +162,6 @@ submitButton.addEventListener('click', (event) => {
                 })
                 .catch((err) => {
                     console.info('Error:', err.message);
-                    //setErrorText(err.message);
                 });
   }
 });
