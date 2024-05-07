@@ -52,4 +52,20 @@ class Cookies
             setcookie($key, $value, $expiration, '/');
         }
     }
+
+    /**
+     * Destroys cookies and remove the data
+     *
+     */
+    public static function destroy_cookies()
+    {
+        $cookies = $_COOKIE;
+
+        // Delete every single cookie except the cookieAllow
+        foreach ($cookies as $name => $value) {
+            if($name != 'cookieAllow'){
+                setcookie($name, '', time() - 3600, '/');
+            }
+        }
+    }
 }

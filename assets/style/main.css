@@ -136,6 +136,7 @@ ul.navbar-container li:hover{
     background-color: rgb(245, 245, 245);
 }
 
+
 .active{
     border: 1px solid var(--primary-color);
 }
@@ -148,6 +149,17 @@ ul.navbar-container li a{
     text-decoration: none;
     font-weight: bold;
     font-size: 20px;
+}
+
+.dropdown-menu {
+  display: none;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid #c8c8c8;
+  border-radius: 30px;
+  position: absolute; 
+  z-index: 101;
+  padding-left: 0px;
 }
 
 body {
@@ -502,13 +514,10 @@ div.field-container{
 
 .menu-list {
   width: 80vw;
-  margin: 0 auto;
   list-style-type: none;
   padding: 0;
   margin: 0;
   padding: 40px;
-  justify-content: center;
-  align-items: center;
 }
 
 .menu-item {
@@ -525,11 +534,15 @@ div.field-container{
 .item-image {
   width: 30%;
   height: 200px;
+  background-color: var(--a-color);
+  border-radius: 20px;
 }
 
 .item-image img {
   max-width: 100%;
+  flex-basis: 200px;
   height: auto;
+  max-height: 200px;
 }
 
 .item-info {

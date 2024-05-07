@@ -13,9 +13,9 @@
     {% if item.href == 'signin' %}
         {% if navbarData.is_authenticated %}
             <li>
-                <img id="profile_image" class="rounded-circle profile-image">
-                <ul class="dropdown-menu" style="position: absolute; z-index: 101;">
-                    <li><a href="#">Log Out</a></li>
+                <img id="profile_image" class="rounded-circle profile-image" onmouseover="showDropdown()" onclick="toggleDropdown()">
+                <ul class="dropdown-menu" id="dropdown-menu">
+                    <li><a href="logout.php">Log Out</a></li>
                 </ul>
             </li>
             <script>
@@ -24,6 +24,7 @@
                 });
             </script>
             <script type="text/javascript" src="assets/js/genColor.js"></script>
+            <script type="text/javascript" src="assets/js/navbar.js"></script>
             <script type="text/javascript" src="assets/js/generateAvatar.js"></script>
         {% else %}
             {% if item.href == navbarData.page_name %}
