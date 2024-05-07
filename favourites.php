@@ -13,9 +13,9 @@
     require_once __DIR__ . '/foodslider.php';
 
     $users_id;
-    //This is fundamental to avoid unauthorized access to the page
+    //This is fundamental to avoid errors in the query. PS: the id 0 is impossible to obtain for an USER
     if(empty($_SESSION['ID'])){
-        echo $twig->render('404.html');
+        $users_id = 0;
     }else{
         $users_id = $_SESSION['ID'];
     }
@@ -23,6 +23,6 @@
     //Fetch all the elements in the foods table that are linked by wishlist, where users_ID is equal to current user id
     $result = $db-> query("SELECT * FROM foods WHERE id IN (SELECT foods_ID FROM wishlists WHERE users_ID = $users_id)");
 
-    echo $twig->render('favourites.html', ['navbar_data' => $navbar_data, 'favourites' => $result]);
+    echo $twig->render('favourites.html', ['navbar_data' => $navbar_data, 'favourites' => $result, 'categories' => $categories, 'selectedCategories' => [], 'is_authenticated' => $session->is_authenticated()]);
 
 ?>

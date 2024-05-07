@@ -10,7 +10,6 @@
 
 require_once __DIR__ . '/bootstrap.php';
 require_once __DIR__ . '/navbar.php';
-require_once __DIR__ . '/foodslider.php';
 
 // Check if id is set in the GET parameters
 if(isset($_GET['id'])){

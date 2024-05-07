@@ -1,3 +1,12 @@
+{#
+    * Favourites
+    *
+    * @author Gioele Giunta
+    * @version 1.0
+    * @since 2023-05-07
+    * @info Me (Gioele) am going to use the CAMEL CASE for the html/twig files
+#}
+
 {% extends "layout.html" %}
 
 {% block pageTitle %}
@@ -18,22 +27,35 @@ Favourites
         </section>
         <div style="margin-top: 50px;"></div>
         <section class="white-bar">
-            <h1>Your Seletions</h1>
             <div class="menu-list">
-                {% for item in favourites %}
-                    <ul style="width: 100%" id="favourite-element{{item.ID}}" class="menu-item flex-row-d">
-                        <li class="item-image">
-                            <img src="{{ item.image }}" alt="{{ item.name }}">
-                        </li>
-                        <li class="item-info flex-row-d">
-                            <div class="flex-column field-container">
-                                <h3 class="item-name">{{ item.name }}</h3>
-                                <p class="item-ingredients">{{ item.ingredients }}</p>
-                            </div>
-                        </li>
-                        <a id="favourite-btn{{item.ID}}" class="favourite-pushed" onclick="favouriteClick('favourite-btn{{item.ID}}', {{ item.ID }}, 'favourite-element{{item.ID}}')"></a>
-                    </ul>
-                {% endfor %}
+                {% if is_authenticated %}
+                    <h1>Your Selections</h1>
+                    {% if favourites is empty %}
+                        <h2>No items in your favourites :(</h2>
+                        <h4>Look what we have to offer</h4>
+                        {% block foodSlider %}
+                        {% include "foodslider.html" with {'categories' : categories, 'selectedCategories' : selectedCategories} %}
+                        {% endblock %}
+                    {% else %}
+                        {% for item in favourites %}
+                            <ul style="width: 100%" id="favourite-element{{item.ID}}" class="menu-item flex-row-d" href="details?id=item.ID">
+                                <li class="item-image">
+                                    <img src="{{ item.image }}" alt="{{ item.name }}">
+                                </li>
+                                <li class="item-info flex-row-d">
+                                    <div class="flex-column field-container">
+                                        <h3 class="item-name">{{ item.name }}</h3>
+                                        <p class="item-ingredients">{{ item.ingredients }}</p>
+                                    </div>
+                                </li>
+                                <a id="favourite-btn{{item.ID}}" class="favourite-pushed" onclick="favouriteClick('favourite-btn{{item.ID}}', {{ item.ID }}, 'favourite-element{{item.ID}}')"></a>
+                            </ul>
+                        {% endfor %}
+                    {% endif %}
+                {%else %}
+                    <h1>To see your favourites, please login</h1>  
+                    {% include "signin_form.html" %}
+                {% endif %}
             </div>
         </section>
         <script src="assets/js/favouriteButtons.js"></script>

@@ -31,6 +31,11 @@ require_once __DIR__ . '/server/autoload.php';
         ],
         [
             'id' => 2,
+            'href' => 'favourites',
+            'name' => 'Your Favourites',
+        ],
+        [
+            'id' => 3,
             'href' => 'signin',
             'name' => 'Sign In',
         ]
