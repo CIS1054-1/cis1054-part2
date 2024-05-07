@@ -34,9 +34,9 @@
                 </div>
             </div>
             {% if details.in_wishlist %}
-                <a id="favourite-btn" class="favourite-pushed" onclick="favouriteClick({{ details.ID }})"></a>
+                <a id="favourite-btn" class="favourite-pushed" onclick="favouriteClick('favourite-btn', {{ details.ID }}, null)"></a>
             {% else %}
-                <a id="favourite-btn" class="favourite-button" onclick="favouriteClick({{ details.ID }})"></a>
+                <a id="favourite-btn" class="favourite-button" onclick="favouriteClick('favourite-btn', {{ details.ID }}, null)"></a>
             {% endif %}
             
         </div>
@@ -65,58 +65,7 @@ Gluten (Oats), Gluten (Spelt), Gluten (Kamut), Crustaceans, Fish, Peanuts, Tree 
             </div>
     </section>
     <script src="assets/js/openList.js"></script>
-
-    <script>
-
-        var favouriteBtn = document.getElementById("favourite-btn");
-        var action;
-
-
-        /**
-        * This function manages the event click of the button
-        */
-        function favouriteClick(foods_id) {
-            if (favouriteBtn.classList.contains("favourite-pushed")) {
-                action = "remove_wishlist.php";
-            } else {
-                action = "add_wishlist.php";
-            }
-            // Perform an AJAX call to the PHP script in order to save food in the wishlist
-            const recipeUrl = 'server/scripts/' + action;
-            const postBody = {
-              foods_id: foods_id,
-            };
-            const requestMetadata = {
-                method: 'POST',
-                headers: {
-                  Accept: 'application/json',
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(postBody)
-            };
-            fetch(recipeUrl, requestMetadata)
-                .then((response) => {
-                    return response.json(); 
-                })
-                .then((responseData) => {
-                    console.log("Response:", responseData);
-                    if (responseData.status === "true") {
-                        if (favouriteBtn.classList.contains("favourite-pushed")) {
-                            favouriteBtn.classList.remove("favourite-pushed");
-                            favouriteBtn.classList.add("favourite-button");
-                        } else {
-                            favouriteBtn.classList.remove("favourite-button");
-                            favouriteBtn.classList.add("favourite-pushed");
-                        }
-                    } else {
-                      generalErrorMessage.textContent = responseData.message;
-                    }
-                })
-                .catch((err) => {
-                    console.info('Error:', err.message);
-                });
-            };
-    </script>
+    <script src="assets/js/favouriteButtons.js"></script>
 
 
 </main>
