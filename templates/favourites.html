@@ -38,15 +38,17 @@ Favourites
                         {% endblock %}
                     {% else %}
                         {% for item in favourites %}
-                            <ul style="width: 100%" id="favourite-element{{item.ID}}" class="menu-item flex-row-d" href="details?id=item.ID">
+                            <ul style="width: 100%" id="favourite-element{{item.ID}}" class="menu-item flex-row-d">
                                 <li class="item-image">
                                     <img src="{{ item.image }}" alt="{{ item.name }}">
                                 </li>
-                                <li class="item-info flex-row-d">
-                                    <div class="flex-column field-container">
-                                        <h3 class="item-name">{{ item.name }}</h3>
-                                        <p class="item-ingredients">{{ item.ingredients }}</p>
-                                    </div>
+                                <li class="item-info">
+                                    <a class="flex-row-d" href="details?id={{item.ID}}">
+                                        <div class="flex-column field-container">
+                                            <h3 class="item-name">{{ item.name }}</h3>
+                                            <p class="item-ingredients">{{ item.ingredients }}</p>
+                                        </div>
+                                    </a>
                                 </li>
                                 <a id="favourite-btn{{item.ID}}" class="favourite-pushed" onclick="favouriteClick('favourite-btn{{item.ID}}', {{ item.ID }}, 'favourite-element{{item.ID}}')"></a>
                             </ul>
