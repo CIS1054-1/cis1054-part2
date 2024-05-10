@@ -27,16 +27,16 @@ Favourites
         </section>
         <div style="margin-top: 50px;"></div>
         <section class="white-bar">
-            <ul class="menu-list">
                 {% if is_authenticated %}
                     <h1>Your Selections</h1>
                     {% if favourites is empty %}
-                        <h2>No items in your favourites :(</h2>
+                        <h1>No items in your favourites :(</h2>
                         <h4>Look what we have to offer</h4>
                         {% block foodSlider %}
                         {% include "foodslider.html" with {'categories' : categories, 'selectedCategories' : selectedCategories} %}
                         {% endblock %}
-                    {% else %}
+                    {% else %}  
+                        <ul class="menu-list">
                         {% for item in favourites %}
                             <li id="favourite-element{{item.ID}}" class="menu-item flex-row-d">
                                 <div class="item-image">
@@ -53,6 +53,7 @@ Favourites
                                 <a id="favourite-btn{{item.ID}}" class="favourite-pushed" onclick="favouriteClick('favourite-btn{{item.ID}}', {{ item.ID }}, 'favourite-element{{item.ID}}')"></a>
                             </li>
                         {% endfor %}
+                        </ul>
                     {% endif %}
                 {%else %}
                     <h1>To see your favourites, please login</h1>  

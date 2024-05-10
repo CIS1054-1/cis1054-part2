@@ -686,7 +686,7 @@ div.field-container{
   cursor: pointer;
 }
 
-.favourite-button:hover {
+.favourite-pushed:hover {
   background-image: url('../img/heart-outline.png');
 }
 
@@ -745,16 +745,22 @@ div.field-container{
 /* Footer*/
 
 footer {
-  background-color: #333;
-  color: #fff;
+  background-color: var(--border);
   text-align: center;
   padding: 10px;
-  position: fixed;
   bottom: 0;
   width: 100%;
   margin-bottom: 0;
+  flex-direction: row;
 }
 
+footer h1 {
+  font-size: 20px;
+}
+
+footer a {
+  color: var(--black);
+}
 
 
 
