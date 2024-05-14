@@ -46,3 +46,11 @@ document.addEventListener("click", function(event) {
         dropdownMenu.style.display = "none";
     }
 });
+
+/**
+ * @brief Hides the dropdown menu when the cursor moves out of the dropdown box.
+ */
+var dropdownMenu = document.getElementById("dropdown-menu");
+dropdownMenu.addEventListener("mouseleave", function() {
+    hideDropdown();
+});

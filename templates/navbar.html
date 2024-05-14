@@ -2,22 +2,38 @@
     * NavBar
     *
     * @author Gioele Giunta
-    * @version 1.0
+    * @version 1.4
     * @since 2023-04-12
     * @info Me (Gioele) am going to use the CAMEL CASE for the html/twig files
     #}
     
 {% block navbar %}
-<ul class="navbar-container">
-    {% for item in navbarData.navbar_elements %}
-    {% if item.href == 'signin' %}
+    <ul class="navbar-container">
+        {% for item in navbarData.navbar_elements %}
+            {% set is_active = item.href == navbarData.page_name %}
+            {% if item.signed == false and item.href != 'signin' %}
+                <li{% if is_active %} class="active"{% endif %}>
+                        <a href="{{ item.href }}">{{ item.name }}</a>
+                </li>
+            {% else %}
+                {% if item.href == 'signin' and navbarData.is_authenticated == false %}
+                    <li{% if is_active %} class="active"{% endif %}>
+                        <a href="{{ item.href }}">{{ item.name }}</a>
+                    </li>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    
         {% if navbarData.is_authenticated %}
-            <li>
-                <img id="profile_image" class="rounded-circle profile-image" onmouseover="showDropdown()" onclick="toggleDropdown()">
-                <ul class="dropdown-menu" id="dropdown-menu">
-                    <li><a href="logout.php">Log Out</a></li>
-                </ul>
-            </li>
+        <li>
+            <img id="profile_image" class="rounded-circle profile-image" onmouseover="showDropdown()" onclick="toggleDropdown()">
+            <ul class="dropdown-menu" id="dropdown-menu">
+                {% for item in navbarData.navbar_elements %}
+                    {% if item.signed %}
+                        <li><a href="{{ item.href }}">{{ item.name }}</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
             <script>
                 document.addEventListener("DOMContentLoaded", function() {
                     document.getElementById("profile_image").src = generateAvatar("{{ navbarData.user_acronym }}", "#FFFFFF", genColor("{{ navbarData.user_acronym }}"));
@@ -26,21 +42,7 @@
             <script type="text/javascript" src="assets/js/genColor.js"></script>
             <script type="text/javascript" src="assets/js/navbar.js"></script>
             <script type="text/javascript" src="assets/js/generateAvatar.js"></script>
-        {% else %}
-            {% if item.href == navbarData.page_name %}
-            <li class="active"><a href="{{item.href}}">{{item.name}}</a></li>
-            {% else %}
-            <li><a href="{{item.href}}">{{item.name}}</a></li>
-            {% endif %}
+        </li>
         {% endif %}
-    {% else %}
-        {% if item.href == navbarData.page_name %}
-        <li class="active"><a href="{{item.href}}">{{item.name}}</a></li>
-        {% else %}
-        <li><a href="{{item.href}}">{{item.name}}</a></li>
-        {% endif %}
-    {% endif %}
-    {% endfor %}
-
-</ul>
+    </ul>
 {% endblock %}

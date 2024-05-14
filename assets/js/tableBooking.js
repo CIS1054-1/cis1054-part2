@@ -10,8 +10,8 @@ const dateInput = document.querySelector('#book-table-form input[name="date"]');
 const timeInput = document.querySelector('#book-table-form input[name="time"]');
 
 // Add an event listener to the date and time inputs
-dateInput.addEventListener('input', debounce(updateBookingUrl, 2000));
-timeInput.addEventListener('input', debounce(updateBookingUrl, 2000));
+dateInput.addEventListener('input', debounce(updateBookingUrl, 1000));
+timeInput.addEventListener('input', debounce(updateBookingUrl, 1000));
 
 let timeoutId;
 
@@ -38,5 +38,4 @@ function debounce(func, delay) {
   };
 }
 
-}
 });

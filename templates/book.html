@@ -10,15 +10,13 @@ Book a Table
 
 {% block content %}
 <main>
-    <section class="top-bar">
-        <img src="assets/img/dogmburger.png" />
+    <section class="top-bar" style="background-color: var(--d-color);">  
+        <img src="assets/img/dogmburger.png"/>
         <div>
-            <h1>Book a Table</h1>
+            <h1 style="color: var(--d-color);">Book a Table</h1>
         </div>
     </section>
-
     <div style="margin-top: 50px;"></div>
-
     <section class="white-bar">
         <form id="book-table-form" action="server/scripts/book_table.php" method="post">
             <input type="hidden" name="datetime" value="{{ datetime }}">
@@ -40,7 +38,7 @@ Book a Table
                     </div>
                 {% endfor %}
             </div>
-            <button type="submit" class="primary-button">Book Table</button>
+            <button type="submit" class="primary-button" style="display: none;">Book Table</button>
         </form>
     </section>
 </main>

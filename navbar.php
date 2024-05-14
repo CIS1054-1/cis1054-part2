@@ -23,22 +23,44 @@ require_once __DIR__ . '/server/autoload.php';
             'id' => 0,
             'href' => 'index',
             'name' => 'Home',
+            'signed' => false,
         ],
         [
             'id' => 1,
             'href' => 'about',
             'name' => 'About us',
+            'signed' => false,
         ],
         [
             'id' => 2,
-            'href' => 'favourites',
-            'name' => 'Your Favourites',
+            'href' => 'signin',
+            'name' => 'Sign In',
+            'signed' => false,
         ],
         [
             'id' => 3,
-            'href' => 'signin',
-            'name' => 'Sign In',
-        ]
+            'href' => 'favourites',
+            'name' => 'Your Favourites',
+            'signed' => true
+        ],
+        [
+            'id' => 4,
+            'href' => 'book',
+            'name' => 'Book a Table',
+            'signed' => true
+        ],
+        [
+            'id' => 5,
+            'href' => 'complain',
+            'name' => 'Help',
+            'signed' => true
+        ],
+        [
+            'id' => 6,
+            'href' => 'logout',
+            'name' => 'Log Out',
+            'signed' => true
+        ],
     ];
 
     $user_acronym = "";

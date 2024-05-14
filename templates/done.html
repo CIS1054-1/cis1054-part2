@@ -1,0 +1,35 @@
+{#
+    * DOne
+    *
+    * @author Gioele Giunta
+    * @version 1.0
+    * @since 2023-05-14
+    * @info Me (Gioele) am going to use the CAMEL CASE for the html/twig files
+    #}
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Confirmation
+{% endblock %}
+
+{% block navbar %}
+{% include "navbar.html" with {'navbarData' : navbar_data} %}
+{% endblock %}
+
+{% block content %}
+<main>
+    <section class="card flex-row-d border-1p">
+        <div class="sub-card phone-none">
+            <img src="assets/img/confirm_chicken.png" alt="Confirm!">
+        </div>
+        <div class="sub-card">
+            <h1>Confirmation</h1>
+            <h2>Your {{ fill }} has been saved!</h2>
+            <h3>{{ details }}</h3>
+        </div>
+    </section>
+
+
+</main>
+{% endblock %}
