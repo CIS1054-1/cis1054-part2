@@ -10,7 +10,7 @@ Los Pollos Hermanos
 
 {% block content %}
     <main>
-        <div style="margin-top: 50px;"></div>
+        <div class="divider"></div>
         {% block foodSlider %}
         {% include "foodslider.html" with {'categories' : categories, selectedCategories: selectedCategories} %}
         {% endblock %}

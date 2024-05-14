@@ -10,51 +10,44 @@ About-Us
 
 {% block content %}
 
-<section class="card gray-bar">
-    <div class="flex-row-d">
-        <div class="flex-column">
-            <img src="" alt="Restaurant">
+<section class="gray-bar width-100">
+    <div class="divider"></div>
+    <div class="card flex-row-d">
+        <div class="sub-card flex-column">
+            <img src="assets/img/restaurant.jpg" alt="Restaurant">
         </div>
-        <div class="flex-column">
+        <div class="sub-card flex-column">
             <article>
                 <h1>About our Restaurant</h1>
-                <p>Los Pollos Hermanos is a chain of restaurants spread over 30 countries and based in the main cities around the world
-                    such as NY, Paris, Madrid, Rome, etc. We have a wide variety of products of the best possible selection and also
-                    with a homemade touch. Don't wait and come and eat at Los Pollos Hermanos. </p>
+                <p>{{ business.about }}</p>
             </article>
         </div>
     </div>
-</section>
-<section class="card">
-    <div class="flex-row-d">
-        <div class="flex-column">
+
+    <div class="card flex-row-d">
+        <div class="sub-card flex-column">
             <article>
                 <h1>Our Staff</h2>
-                    <p>Our managing director, Gustavo Fring, is an Italian-Hispanic entrepreneur who opened his first restaurant more than
-                        15 years ago with his own money. From the very beginning, he has always been concerned about customer service, which
-                        he considers essential and has instilled these values in his employees, who will welcome you at the entrance with
-                        open arms.</p>
+                    <p>{{ business.staff }}</p>
             </article>
         </div>
-        <div class="col-6">
-            <img src="" alt="Employees">
+        <div class="sub-card col-6">
+            <img src="assets/img/staff.jpg" alt="Staff">
         </div>
     </div>
-</section>
 
 <div class="card gray-bar">
     <div class="flex-row-d">
         <div class="flex-column">
             <ul class="contact-info">
-                <!-- <li><strong>Contact us on</strong>: {{ business.telephone }}</li>
+                <li><strong>Contact us on</strong>: {{ business.telephone }}</li>
                 <li><strong>Email us on</strong>: {{ business.email }}</li>
                 <li><strong>Contact person</strong>: {{ business.contact }}</li>
                 <li><strong>Address</strong>: {{ business.address }}</li>
-                <li><strong>Bio</strong>: {{ business.bio }}</li> -->
             </ul>
         </div>
     </div>
-    <a href="index.php" class="btn">Back</a>
 </div>
+</section>
 
 {% endblock %}

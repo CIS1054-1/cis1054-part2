@@ -13,6 +13,10 @@
 Element not found!
 {% endblock %}
 
+{% block navbar %}
+{% include "navbar.html" with {'navbarData' : navbar_data} %}
+{% endblock %}
+
 {% block content %}
     <main>
         <div class="text-box">

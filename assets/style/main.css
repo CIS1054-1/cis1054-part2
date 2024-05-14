@@ -379,6 +379,10 @@ div.field-container{
     }
 }
 
+.divider{
+  margin-top: 50px;
+  width: 100%;
+}
 
 /*Food Slider*/
 .slider {
@@ -648,6 +652,10 @@ div.field-container{
 
 .width-100pe{
   width: 100%;
+}
+
+.width-100{
+  width: 100vw;
 }
 
 
