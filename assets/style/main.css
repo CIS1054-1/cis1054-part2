@@ -792,6 +792,28 @@ ul, li, ol {
   list-style-type: none;
 }
 
+/* Complaint */
+
+.complaint-form {
+  text-align: left;
+}
+
+.form-group {
+  margin-top: 1rem;
+}
+
+.form-group input[type="text"] {
+  width: 600px;
+  height: 20px
+}
+
+.form-group textarea#description {
+  width: 600px; 
+  height: 90px; 
+}
+
+
+
 /*Tablet*/
 @media (max-width: 977px) {
     a.navbar-image img{
