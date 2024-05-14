@@ -217,6 +217,7 @@ main {
 /* Button Style */
 button {
   text-transform: uppercase;
+  margin: 10px;
 }
 .primary-button {
   display: inline-block;
@@ -820,7 +821,58 @@ ul, li, ol {
   height: 90px; 
 }
 
+/* Book */
+.table-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 20px;
+}
 
+.table-circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 20px;
+  cursor: pointer;
+}
+
+.table-circle.available {
+  background-color: #6ec76e;
+  color: #fff;
+}
+
+.table-circle.occupied {
+  background-color: #ff6666;
+  color: #fff;
+  cursor: not-allowed;
+}
+
+.calendar-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.calendar-container input[type="date"],
+.calendar-container input[type="time"] {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 0 10px;
+}
+
+.calendar-container input[type="date"]:hover,
+.calendar-container input[type="time"]:hover {
+  border-color: #9b9b9b;
+}
 
 /*Tablet*/
 @media (max-width: 977px) {

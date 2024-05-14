@@ -20,9 +20,13 @@ Book a Table
     <div style="margin-top: 50px;"></div>
 
     <section class="white-bar">
-        <form id="book-table-form" action="book_table.php" method="post">
-            <input type="hidden" name="datetime" value="{{ app.request.get('datetime') }}">
-
+        <form id="book-table-form" action="server/scripts/book_table.php" method="post">
+            <input type="hidden" name="datetime" value="{{ datetime }}">
+            <div class="calendar-container">
+                <input type="date" name="date" value="{{ datetime|date('Y-m-d') }}">
+                <input type="time" name="time" value="{{ datetime|date('H:i') }}">
+            </div>
+            <input type="text" name="table-number" style="display: none;">
             <div class="table-grid">
                 {% for i in 1..10 %}
                     {% set isReserved = false %}
@@ -31,19 +35,12 @@ Book a Table
                             {% set isReserved = true %}
                         {% endif %}
                     {% endfor %}
-
                     <div class="table-circle {% if isReserved %}occupied{% else %}available{% endif %}" data-table="{{ i }}">
                         {{ i }}
                     </div>
                 {% endfor %}
             </div>
-
-            <div class="calendar-container">
-                <input type="date" name="date" value="{{ app.request.get('datetime')|date('Y-m-d') }}">
-                <input type="time" name="time" value="{{ app.request.get('datetime')|date('H:i') }}">
-            </div>
-
-            <button type="submit">Book Table</button>
+            <button type="submit" class="primary-button">Book Table</button>
         </form>
     </section>
 </main>
