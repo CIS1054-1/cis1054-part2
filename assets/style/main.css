@@ -846,6 +846,11 @@ ul, li, ol {
   cursor: pointer;
 }
 
+.table-circle:hover,
+.table-circle.active {
+  box-shadow: inset 0 0 0 4px #007bff;
+}
+
 .table-circle.available {
   background-color: #6ec76e;
   color: #fff;

@@ -2,7 +2,11 @@ document.querySelectorAll('.table-circle.available').forEach(circle => {
     circle.addEventListener('click', () => {
         const tableNumber = circle.dataset.table;
         document.querySelector('#book-table-form input[name="table-number"]').value = tableNumber;
-        document.querySelector('#book-table-form').submit();
+        //Remove the active class from all the tables
+        document.querySelectorAll('.table-circle').forEach(c => c.classList.remove('active'));
+        //Add the class to the selected one
+        circle.classList.add('active');
+        //document.querySelector('#book-table-form').submit(); 
     });
 
 // Get the date and time input elements
