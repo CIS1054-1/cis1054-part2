@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Mag 05, 2024 alle 23:29
+-- Creato il: Mag 14, 2024 alle 17:26
 -- Versione del server: 10.4.28-MariaDB
 -- Versione PHP: 8.2.4
 
@@ -22,6 +22,28 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `cis1054-part2` DEFAULT CHARACTER SET latin2 COLLATE latin2_bin;
 USE `cis1054-part2`;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `business`
+--
+
+CREATE TABLE `business` (
+  `telephone` text NOT NULL,
+  `email` text NOT NULL,
+  `contact` text NOT NULL,
+  `address` text NOT NULL,
+  `about` text NOT NULL,
+  `staff` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin2 COLLATE=latin2_bin;
+
+--
+-- Dump dei dati per la tabella `business`
+--
+
+INSERT INTO `business` (`telephone`, `email`, `contact`, `address`, `about`, `staff`) VALUES
+('+35699009900', 'info@LPH.com', 'Gustavo Fring', 'L-Universita ta\' Malta Msida, MSD 2080', 'Los Pollos Hermanos is a chain of restaurants spread over 30 countries and based in the main cities around the world such as NY, Paris, Madrid, Rome, etc. We have a wide variety of products of the best possible selection and also with a homemade touch. Don\'t wait and come and eat at Los Pollos Hermanos.', 'Our managing director, Gustavo Fring, is an Italian-Hispanic entrepreneur who opened his first restaurant more than 15 years ago with his own money. From the very beginning, he has always been concerned about customer service, which he considers essential and has instilled these values in his employees, who will welcome you at the entrance with open arms.');
 
 -- --------------------------------------------------------
 
@@ -174,7 +196,6 @@ INSERT INTO `users` (`ID`, `name`, `surname`, `email`, `password`, `role`) VALUE
 --
 
 CREATE TABLE `wishlists` (
-  `ID` int(11) NOT NULL,
   `users_ID` int(11) NOT NULL,
   `foods_ID` int(11) NOT NULL,
   `date_add` timestamp NOT NULL DEFAULT current_timestamp()
@@ -207,7 +228,7 @@ ALTER TABLE `users`
 -- Indici per le tabelle `wishlists`
 --
 ALTER TABLE `wishlists`
-  ADD PRIMARY KEY (`ID`);
+  ADD UNIQUE KEY `touple` (`users_ID`,`foods_ID`);
 
 --
 -- AUTO_INCREMENT per le tabelle scaricate
@@ -230,12 +251,6 @@ ALTER TABLE `foods`
 --
 ALTER TABLE `users`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
---
--- AUTO_INCREMENT per la tabella `wishlists`
---
-ALTER TABLE `wishlists`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
