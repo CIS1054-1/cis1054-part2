@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Mag 14, 2024 alle 17:26
+-- Creato il: Mag 16, 2024 alle 19:51
 -- Versione del server: 10.4.28-MariaDB
 -- Versione PHP: 8.2.4
 
@@ -68,6 +68,29 @@ INSERT INTO `categories` (`ID`, `name`, `image`) VALUES
 (4, 'Pasta', 'pasta.png'),
 (5, 'Drinks', 'drinks.png'),
 (6, 'Desserts', 'desserts.png');
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `complaints`
+--
+
+CREATE TABLE `complaints` (
+  `ID` int(11) NOT NULL,
+  `users_ID` int(11) NOT NULL,
+  `subject` text NOT NULL,
+  `description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin2 COLLATE=latin2_bin;
+
+--
+-- Dump dei dati per la tabella `complaints`
+--
+
+INSERT INTO `complaints` (`ID`, `users_ID`, `subject`, `description`) VALUES
+(1, 15, 'dddddddddddddddddddddddd', 'dddddddddddddddddddddddddddddddddddddd'),
+(2, 15, 'Test123456', 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk'),
+(3, 15, 'dddddddddd', 'dddddddddddddddddddddddddddddddd'),
+(4, 15, 'ddddddddddddddddd', 'dddddddddddddddddddddddddddddddddd');
 
 -- --------------------------------------------------------
 
@@ -160,12 +183,48 @@ INSERT INTO `foods` (`ID`, `categories_ID`, `name`, `ingredients`, `image`, `pri
 --
 
 CREATE TABLE `reservations` (
-  `ID` int(11) NOT NULL,
   `users_ID` int(11) NOT NULL,
   `table_number` int(11) NOT NULL,
   `time` datetime NOT NULL,
   `book_duration` double NOT NULL DEFAULT 1.5
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2 COLLATE=latin2_bin;
+
+--
+-- Dump dei dati per la tabella `reservations`
+--
+
+INSERT INTO `reservations` (`users_ID`, `table_number`, `time`, `book_duration`) VALUES
+(15, 1, '2024-05-16 18:19:56', 1.5),
+(15, 2, '2024-05-14 20:13:56', 1.5),
+(15, 2, '2024-05-16 11:45:11', 1.5),
+(15, 2, '2024-05-16 17:52:34', 1.5),
+(15, 2, '2024-05-18 14:12:00', 1.5),
+(15, 2, '2024-05-28 19:00:00', 1.5),
+(15, 3, '2023-05-14 19:54:00', 1.5),
+(15, 3, '2024-05-15 16:07:16', 1.5),
+(15, 3, '2024-05-16 11:42:14', 1.5),
+(15, 3, '2024-05-16 17:42:25', 1.5),
+(15, 3, '2024-05-18 16:12:00', 1.5),
+(15, 4, '2024-05-14 18:12:00', 1.5),
+(15, 4, '2024-05-14 22:21:00', 1.5),
+(15, 4, '2024-05-16 12:04:41', 1.5),
+(15, 4, '2024-05-16 17:06:00', 1.5),
+(15, 4, '2024-05-18 14:12:00', 1.5),
+(15, 5, '2024-05-14 04:05:00', 1.5),
+(15, 5, '2024-05-14 19:56:20', 1.5),
+(15, 5, '2024-05-16 12:07:21', 1.5),
+(15, 5, '2024-05-16 17:42:14', 1.5),
+(15, 5, '2024-05-18 16:12:00', 1.5),
+(15, 6, '2024-05-16 18:20:25', 1.5),
+(15, 6, '2024-05-18 16:12:00', 1.5),
+(15, 7, '2024-05-14 18:17:00', 1.5),
+(15, 7, '2024-05-15 19:07:00', 1.5),
+(15, 8, '2024-05-14 20:13:36', 1.5),
+(15, 8, '2024-05-16 13:19:13', 1.5),
+(15, 8, '2024-05-18 16:12:00', 1.5),
+(15, 9, '2024-05-16 13:19:28', 1.5),
+(15, 9, '2024-05-18 16:12:00', 1.5),
+(15, 10, '2024-05-18 16:12:00', 1.5);
 
 -- --------------------------------------------------------
 
@@ -187,7 +246,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`ID`, `name`, `surname`, `email`, `password`, `role`) VALUES
-(15, 'Gioele', 'Giunta', 'giunta.gioele0@gmail.com', '28be81190549b2febd04bca0dbbec4afebed4bdba543351ee3f99ac9b006f159e67a61bf7b9b418f7815582e825bdfc5', 'user');
+(15, 'Gioele', 'Giunta', 'giunta.gioele0@gmail.com', '28be81190549b2febd04bca0dbbec4afebed4bdba543351ee3f99ac9b006f159e67a61bf7b9b418f7815582e825bdfc5', 'user'),
+(17, 'Gioele', 'Giunta2', 'giunta.gioele3@gmail.com', '28be81190549b2febd04bca0dbbec4afebed4bdba543351ee3f99ac9b006f159e67a61bf7b9b418f7815582e825bdfc5', 'user');
 
 -- --------------------------------------------------------
 
@@ -202,6 +262,13 @@ CREATE TABLE `wishlists` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2 COLLATE=latin2_bin;
 
 --
+-- Dump dei dati per la tabella `wishlists`
+--
+
+INSERT INTO `wishlists` (`users_ID`, `foods_ID`, `date_add`) VALUES
+(15, 22, '2024-05-14 19:21:39');
+
+--
 -- Indici per le tabelle scaricate
 --
 
@@ -212,10 +279,22 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indici per le tabelle `complaints`
+--
+ALTER TABLE `complaints`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indici per le tabelle `foods`
 --
 ALTER TABLE `foods`
   ADD PRIMARY KEY (`ID`);
+
+--
+-- Indici per le tabelle `reservations`
+--
+ALTER TABLE `reservations`
+  ADD PRIMARY KEY (`table_number`,`time`);
 
 --
 -- Indici per le tabelle `users`
@@ -241,6 +320,12 @@ ALTER TABLE `categories`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT per la tabella `complaints`
+--
+ALTER TABLE `complaints`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT per la tabella `foods`
 --
 ALTER TABLE `foods`
@@ -250,7 +335,7 @@ ALTER TABLE `foods`
 -- AUTO_INCREMENT per la tabella `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
