@@ -14,7 +14,7 @@ const descriptionInput = document.getElementById('description');
 const submitButton = document.getElementById('submit_complaint');
 const subjectErrorMessage = document.getElementById('subject-error');
 const descriptionErrorMessage = document.getElementById('description-error');
-
+const form = document.querySelector('#complaint-make-form');
 
 /*
 * This function validate the Subject

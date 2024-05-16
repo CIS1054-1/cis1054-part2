@@ -19,6 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo $table_number;
 
     if ((!empty($table_number) && !empty($datetime) && !empty($user_id))) {
+
+        //Server side check
         if($table_number > 0 && $table_number <=10) {
             $reservation_query = "SELECT * FROM reservations WHERE table_number = $table_number AND ('$datetime' BETWEEN time AND DATE_ADD(time, INTERVAL book_duration HOUR))";
             $reservation_result = $db->query($reservation_query);

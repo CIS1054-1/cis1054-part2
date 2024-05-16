@@ -1,5 +1,16 @@
-let tableNumber = false;
-const submitButton = document.getElementById('submit');
+/** 
+ *  * tableBooking this file manage the scripts to click, update calendar and validate the book.html
+    *
+    * @author Gioele Giunta
+    * @version 1.0
+    * @since 2024-05-14
+    * @info Me (Gioele) am going to use the CAMEL CASE for the java files
+**/
+
+let tableNumber = -1;
+const submitButton = document.getElementById('submit_book');
+const form = document.querySelector('#book-table-form');
+
 
 document.querySelectorAll('.table-circle.available').forEach(circle => {
     circle.addEventListener('click', () => {
@@ -14,6 +25,18 @@ document.querySelectorAll('.table-circle.available').forEach(circle => {
 
         submitButton.disabled = false;
     });
+});
+
+
+submitButton.addEventListener('click', (event) => {
+  // Prevent the default form submission
+  event.preventDefault();
+
+  if (tableNumber != -1) {
+    // If both fields are valid, enable the submit button and submit the form
+    submitButton.disabled = false;
+    form.submit();
+  }
 });
 
 // Get the date and time input elements

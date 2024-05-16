@@ -28,7 +28,10 @@ Complaints
 		{% if is_authenticated %}
 			<section class="white-bar">
             	<h1>Something went wrong? Let us know!</h1>
-				<form action="server/scripts/complaint_form.php" method="post">
+				<div class="field-container">
+					<p>Field with * are requireds</p>
+				  </div>
+				<form id="complaint-make-form" action="server/scripts/complaint_form.php" method="post">
 					<div class="field-container">
 						<label for="subject-input">
 							<span class="label-text">*Subject:</span>
