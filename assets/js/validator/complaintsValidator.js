@@ -56,7 +56,7 @@ if(descriptionInput.value.length == 0){
   //Check if the description contain whan special character like at least one number and is between 8,16 in one unique call in a different way from email
 if (descriptionInput.value.length < 25 || descriptionInput.value.length > 200) {
   //Change the description-error classed p
-  descriptionErrorMessage.textContent = 'Description must be between 30 and 200 characters.';
+  descriptionErrorMessage.textContent = 'Description must be between 25 and 200 characters.';
   submitButton.disabled = true;
   return false;
 }

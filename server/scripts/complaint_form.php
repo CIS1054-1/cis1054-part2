@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     if(!empty($users_id) && !empty($subject) && !empty($description)){
         //Server side check
-        if(strlen($subject) >= 8 && strlen($subject) <= 25 && strlen($description) >= 30 && strlen($description) <= 200){
+        if(strlen($subject) >= 8 && strlen($subject) <= 25 && strlen($description) >= 25 && strlen($description) <= 200){
             $insert_query = "INSERT INTO complaints (users_id, subject, description) VALUES ($users_id, '$subject', '$description' )";
             $db->query($insert_query);
             header('Location: ../../done.php?fill=complaint');

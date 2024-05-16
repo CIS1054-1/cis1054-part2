@@ -24,27 +24,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Check if email and password are not empty
     if (!empty($email) && !empty($password)) {
-        // Check if the email exists in the users table
-        $email_query = "SELECT * FROM users WHERE email='$email'";
-        $email_result = $db->query($email_query);
-        if (mysqli_num_rows($email_result) == 0) {
-            // If the email does not exist, return an error response
-            $arr = ["status" => "wrong", "message" => "Oops! Wrong email!"];
-            echo json_encode($arr);
-        } else {
-            // Check if the password is correct
-            $user_row = mysqli_fetch_assoc($email_result);
-            if ("'" . $user_row['password'] . "'" == hash_crypt($password)) {
-                // If the email and password are correct, set the session variables using methods
-                $session->save_data($user_row);
-                $cookies->save_data($user_row);
-                $arr = ["status" => "true", "message" => "Success"];
+        //Server side check
+        if (preg_match('/^(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-zA-Z])./', $password) && preg_match('/^[^\s@]+@[^\s@]+\.[^\s@]+$/', $email)) {
+            // Check if the email exists in the users table
+            $email_query = "SELECT * FROM users WHERE email='$email'";
+            $email_result = $db->query($email_query);
+            if (mysqli_num_rows($email_result) == 0) {
+                // If the email does not exist, return an error response
+                $arr = ["status" => "wrong", "message" => "Oops! Wrong email!"];
                 echo json_encode($arr);
             } else {
-                // If the password is incorrect, return an error response
-                $arr = ["status" => "wrong", "message" => "Oops! Wrong password!"];
-                echo json_encode($arr);
+                // Check if the password is correct
+                $user_row = mysqli_fetch_assoc($email_result);
+                if ("'" . $user_row['password'] . "'" == hash_crypt($password)) {
+                    // If the email and password are correct, set the session variables using methods
+                    $session->save_data($user_row);
+                    $cookies->save_data($user_row);
+                    $arr = ["status" => "true", "message" => "Success"];
+                    echo json_encode($arr);
+                } else {
+                    // If the password is incorrect, return an error response
+                    $arr = ["status" => "wrong", "message" => "Oops! Wrong password!"];
+                    echo json_encode($arr);
+                }
             }
+        } else {
+            //Email or password doesn't respect critera, return an error responde
+            $arr = ["status" => "false", "message" => "Please check your email and password!"];
+            echo json_encode($arr);
         }
     } else {
         // If the email or password is empty, return an error response
