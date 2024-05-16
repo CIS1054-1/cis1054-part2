@@ -29,17 +29,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Check if all required fields are not empty
     if (!empty($name) && !empty($surname) && !empty($email) && !empty($password)) {
-        $signup_query = "INSERT INTO users (name, surname, email, password, role) VALUES($name, $surname, $email, " . hash_crypt($password) . ", 'user')";
+        $signup_query = "INSERT INTO users (name, surname, email, password, role) VALUES('$name', '$surname', '$email', " . hash_crypt($password) . ", 'user')";
 
         // Check if the email is already registered
-        $email_query = "SELECT ID FROM users WHERE email=$email";
+        $email_query = "SELECT ID FROM users WHERE email='$email'";
         $email_result = $db->query($email_query);
         if (mysqli_num_rows($email_result) == 0) {
             // Register the user
             $signup_result = $db->query($signup_query);
             if ($signup_result) {
                 // Verify the user's credentials again
-                $password_query = "SELECT * FROM users WHERE email = $email AND password = " . hash_crypt($password) . "";
+                $password_query = "SELECT * FROM users WHERE email = '$email' AND password = " . hash_crypt($password) . "";
                 $password_result = $db->query($password_query);
                 if (mysqli_num_rows($password_result) == 0) {
                     // If the credentials are incorrect, return an error response

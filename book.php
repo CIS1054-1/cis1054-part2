@@ -7,7 +7,6 @@
  * @since 2023-05-14
  */
 
-// Load necessary files
 require_once __DIR__ . '/bootstrap.php';
 require_once __DIR__ . '/navbar.php';
 
@@ -26,6 +25,7 @@ $reservations = $db->query("SELECT * FROM reservations WHERE ('$datetime' BETWEE
 echo $twig->render('book.html', [
     'navbar_data' => $navbar_data,
     'reservations' => $reservations,
-    'datetime' => $datetime
+    'datetime' => $datetime,
+    'is_authenticated' => $session->is_authenticated()
 ]);
 ?>

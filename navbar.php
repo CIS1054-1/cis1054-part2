@@ -51,7 +51,7 @@ require_once __DIR__ . '/server/autoload.php';
         ],
         [
             'id' => 5,
-            'href' => 'complain',
+            'href' => 'complaints',
             'name' => 'Help',
             'signed' => true
         ],

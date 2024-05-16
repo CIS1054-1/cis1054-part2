@@ -19,43 +19,44 @@ Complaints
 {% block content %}
 
 <main>
-    <section class="white-bar">
+	<section class="top-bar" style="background-color: var(--d-color);">  
+        <img src="assets/img/dogmburger.png"/>
+        <div>
+            <h1 style="color: var(--d-color);">Book a Table</h1>
+        </div>
+    </section>
 		{% if is_authenticated %}
-            <h1>Something went wrong? Let us know!</h1>
-			<form method="post" action="{{ path('complaint_new') }}" class="complaint-form">
-				<div class="form-group">
-					<p>Subject:</p>
-					<input type="text" id="subject" name="subject" required>
-				</div>
+			<section class="white-bar"></section>
+            	<h1>Something went wrong? Let us know!</h1>
+				<form action="server/scripts/complaint_form.php" method="post">
+					<div class="form-group">
+						<p>Subject:</p>
+						<input type="text" id="subject" name="subject" required>
+					</div>
 				
-                <div class="form-group">
-					<p>Name:</p>
-					<input type="text" id="name" name="name" required>
-                </div>
+            	    <div class="form-group">
+						<p>Name:</p>
+						<input type="text" id="name" name="name" required>
+            	    </div>
 					
-				<div class="form-group">
-                    <p>Email:</p>
-                    <input type="text" id="email" name="email" required>
-                </div>
-					
-				<div class="form-group">
-					<p>Description:</p>
-					<textarea id="description" name="description" required></textarea>
-				</div>
-					
-                <div class="gray-bar"></div>
-					
-				<button type="submit" class="primary-button">Submit</button>
-			</form>		
-        {%else %}
-			<section class="top-bar">  
-				<img src="assets/img/dogmburger.png"/>
-				<div>
-					<h1>To fill a complaint, please login</h1> 
-				</div>
-			</section>	 
+					<div class="form-group">
+            	        <p>Email:</p>
+            	        <input type="text" id="email" name="email" required>
+            	    </div>
+
+					<div class="form-group">
+						<p>Description:</p>
+						<textarea id="description" name="description" required></textarea>
+					</div>
+
+            	    <div class="gray-bar"></div>
+
+					<button type="submit" class="primary-button">Submit</button>
+				</form>		
+			</section>
+        {% else %} 
+			<h1>To fill a complaint, please login</h1>
             {% include "signin_form.html" %}
         {% endif %}
-    </section>
 </main>
 {% endblock %}

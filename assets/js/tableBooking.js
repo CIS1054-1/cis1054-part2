@@ -1,13 +1,20 @@
+let tableNumber = false;
+const submitButton = document.getElementById('submit');
+
 document.querySelectorAll('.table-circle.available').forEach(circle => {
     circle.addEventListener('click', () => {
-        const tableNumber = circle.dataset.table;
+
+        tableNumber = circle.dataset.table;
         document.querySelector('#book-table-form input[name="table-number"]').value = tableNumber;
         //Remove the active class from all the tables
         document.querySelectorAll('.table-circle').forEach(c => c.classList.remove('active'));
+
         //Add the class to the selected one
         circle.classList.add('active');
-        //document.querySelector('#book-table-form').submit(); 
+
+        submitButton.disabled = false;
     });
+});
 
 // Get the date and time input elements
 const dateInput = document.querySelector('#book-table-form input[name="date"]');
@@ -42,4 +49,13 @@ function debounce(func, delay) {
   };
 }
 
-});
+
+    // Add a submit event handler to the form
+    form.addEventListener('submit', (event) => {
+      // Check if a table has been selected
+      if (!tableNumber) {
+        // If no table has been selected, prevent the form submission
+        event.preventDefault();
+        alert('Please select a table before booking.');
+      }
+    });

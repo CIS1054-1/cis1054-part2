@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     if(!empty($complaint_id) && !empty($subject) && !empty($email) && !empty($name) && !empty($description)){
 
-        $insert_query = "INSERT INTO complaints (complaint_id, subject, email, name, description) VALUES ($complaint_id, $subject, $email, $name, $description )";
+        $insert_query = "INSERT INTO complaints (ID, subject, email, name, description) VALUES ($complaint_id, $subject, $email, $name, $description )";
         $db->query($insert_query);
         header('Location: confirmation.php');
         exit;

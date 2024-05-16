@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if email and password are not empty
     if (!empty($email) && !empty($password)) {
         // Check if the email exists in the users table
-        $email_query = "SELECT * FROM users WHERE email=$email";
+        $email_query = "SELECT * FROM users WHERE email='$email'";
         $email_result = $db->query($email_query);
         if (mysqli_num_rows($email_result) == 0) {
             // If the email does not exist, return an error response

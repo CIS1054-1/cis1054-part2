@@ -109,7 +109,7 @@
 
         // Check if the connection was successful
         if ($connection_initializer['status']) {
-            return "'" . self::$connection->real_escape_string($value) . "'";
+            return strval(self::$connection->real_escape_string($value));
         } else {
             // If the connection failed, return the value as is
             return $value;

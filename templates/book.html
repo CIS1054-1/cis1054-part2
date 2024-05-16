@@ -17,30 +17,35 @@ Book a Table
         </div>
     </section>
     <div style="margin-top: 50px;"></div>
-    <section class="white-bar">
-        <form id="book-table-form" action="server/scripts/book_table.php" method="post">
-            <input type="hidden" name="datetime" value="{{ datetime }}">
-            <div class="calendar-container">
-                <input type="date" name="date" value="{{ datetime|date('Y-m-d') }}">
-                <input type="time" name="time" value="{{ datetime|date('H:i') }}">
-            </div>
-            <input type="text" name="table-number" style="display: none;">
-            <div class="table-grid">
-                {% for i in 1..10 %}
-                    {% set isReserved = false %}
-                    {% for reservation in reservations %}
-                        {% if reservation.table_number == i %}
-                            {% set isReserved = true %}
-                        {% endif %}
+    {% if is_authenticated %}
+        <section class="white-bar">
+            <form id="book-table-form" action="server/scripts/book_table.php" method="post">
+                <input type="hidden" name="datetime" value="{{ datetime }}">
+                <div class="calendar-container">
+                    <input type="date" name="date" value="{{ datetime|date('Y-m-d') }}">
+                    <input type="time" name="time" value="{{ datetime|date('H:i') }}">
+                </div>
+                <input type="text" name="table-number" style="display: none;">
+                <div class="table-grid">
+                    {% for i in 1..10 %}
+                        {% set isReserved = false %}
+                        {% for reservation in reservations %}
+                            {% if reservation.table_number == i %}
+                                {% set isReserved = true %}
+                            {% endif %}
+                        {% endfor %}
+                        <div class="table-circle {% if isReserved %}occupied{% else %}available{% endif %}" data-table="{{ i }}">
+                            {{ i }}
+                        </div>
                     {% endfor %}
-                    <div class="table-circle {% if isReserved %}occupied{% else %}available{% endif %}" data-table="{{ i }}">
-                        {{ i }}
-                    </div>
-                {% endfor %}
-            </div>
-            <button type="submit" class="primary-button">Book Table</button>
-        </form>
-    </section>
+                </div>
+                <button type="submit" id="submit" class="primary-button" disabled>Book Table</button>
+            </form>
+        </section>
+    {% else %}
+        <h1>To book a table, please login</h1>
+        {% include "signin_form.html" %}
+    {% endif %}
 </main>
 
 <script type="text/javascript" src="assets/js/tableBooking.js"></script>

@@ -16,23 +16,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $datetime = $db->quote($_POST['datetime']);
     $user_id = $db->quote($_SESSION['ID']);
 
-    if (!empty($table_number) && !empty($datetime) && !empty($user_id)) {
+    echo $table_number;
 
-    $reservation_query = "SELECT * FROM reservations WHERE table_number = $table_number AND ($datetime BETWEEN time AND DATE_ADD(time, INTERVAL book_duration HOUR))";
-    $reservation_result = $db->query($reservation_query);
+    if ((!empty($table_number) && !empty($datetime) && !empty($user_id))) {
 
-    if (mysqli_num_rows($reservation_result) == 0) {
-            // The table is available, proceed with the booking
-            $insert_query = "INSERT INTO reservations (table_number, time, users_ID) VALUES ($table_number, $datetime, $user_id)";
-            $db->query($insert_query);
+        $reservation_query = "SELECT * FROM reservations WHERE table_number = $table_number AND ('$datetime' BETWEEN time AND DATE_ADD(time, INTERVAL book_duration HOUR))";
+        $reservation_result = $db->query($reservation_query);
+
+        if (mysqli_num_rows($reservation_result) == 0) {
+                // The table is available, proceed with the booking
+                $insert_query = "INSERT INTO reservations (table_number, time, users_ID) VALUES ($table_number, '$datetime', $user_id)";
+                $db->query($insert_query);
     
-            // Redirect the user to the confirmation page or the home page
-            header('Location: ../../done.php?fill=reservation&details=Reservation Time: '. $datetime . ' Table: ' . $table_number);
-            exit;
-    } else {
-        // The table is not available, show an error message
-        echo "Sorry, the selected table is no longer available for the chosen date/time.";
-    }
+                // Redirect the user to the confirmation page or the home page
+                header('Location: ../../done.php?fill=reservation&details=Reservation Time: '. $datetime . ' Table: ' . $table_number);
+                exit;
+        } else {
+            // The table is not available, show an error message
+            echo "Sorry, the selected table is no longer available for the chosen date/time.";
+        }
     }else{
         echo "ALARM 406: ACTIVE PROTECTION, IP SAVED";
     }
