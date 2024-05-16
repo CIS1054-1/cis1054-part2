@@ -48,14 +48,3 @@ function debounce(func, delay) {
     }, delay);
   };
 }
-
-
-    // Add a submit event handler to the form
-    form.addEventListener('submit', (event) => {
-      // Check if a table has been selected
-      if (!tableNumber) {
-        // If no table has been selected, prevent the form submission
-        event.preventDefault();
-        alert('Please select a table before booking.');
-      }
-    });
