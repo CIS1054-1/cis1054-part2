@@ -7,11 +7,8 @@
  * @since 2023-05-17
  * @info Me (Gioele) am going to use the SNAKE CASE for the php files
  */
-require __DIR__ . '/../smtp.php';
 
-
-
-function sed_email($to, $subject, $body, $alt_body){
+function send_email($to, $subject, $body, $alt_body, $mail){
     try{
         //Recipient
         $mail->AddAddress($to);
