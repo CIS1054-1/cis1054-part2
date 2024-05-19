@@ -1,5 +1,5 @@
 {#
-    * Favourites
+    * favourites.html
     *
     * @author Gioele Giunta
     * @version 1.0
@@ -36,6 +36,7 @@ Favourites
                         {% include "foodslider.html" with {'categories' : categories, 'selectedCategories' : selectedCategories} %}
                         {% endblock %}
                     {% else %}  
+                        <a class="primary-button" href="server/scripts/send_favourites.php">Send via Email</a>
                         <ul class="menu-list">
                         {% for item in favourites %}
                             <li id="favourite-element{{item.ID}}" class="menu-item flex-row-d">

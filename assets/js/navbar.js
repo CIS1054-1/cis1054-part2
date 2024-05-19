@@ -1,11 +1,11 @@
-/** 
-    * generateAvatar 
-    *
-    * @author Gioele Giunta
-    * @version 1.0
-    * @since 2024-05-07
-    * @info Me (Gioele) am going to use the CAMEL CASE for the java files
-**/
+/**
+ * @file generateAvatar.js
+ * @brief Provides functionality for a dropdown menu associated with an avatar image.
+ * @author Gioele Giunta
+ * @version 1.0
+ * @date 2024-05-07
+ * @info The author, Gioele, is going to use the Camel Case for the JavaScript files.
+ */
 
 /**
  * @brief Displays the dropdown menu when hovering over the image.

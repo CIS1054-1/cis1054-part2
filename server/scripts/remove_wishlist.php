@@ -1,12 +1,13 @@
 <?php
 /**
- * add_wishlist
- *
+ * @file remove_wishlist.php
+ * @brief Handles the process of adding an item to the user's wishlist.
  * @author Gioele Giunta
  * @version 1.0
- * @since 2023-05-07
- * @info Me (Gioele) am going to use the SNAKE CASE for the php files
+ * @date 2023-05-07
+ * @info The author, Gioele, is going to use the Snake Case for the PHP files.
  */
+
 require_once __DIR__ . '/../autoload.php';
 
 // Set the Content-Type header to indicate that the response is in JSON format
@@ -28,7 +29,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_SESSION['ID'])) {
         $foods_result = $db->query($foods_query);
         $arr = ["status" => "true", "message" => "Success"];
         echo json_encode($arr);
-        
     } else {
         // If the foods_id is empty, return an error response
         $arr = ["status" => "false", "message" => "ALARM 406: ACTIVE PROTECTION, IP SAVED"];

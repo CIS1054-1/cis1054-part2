@@ -1,16 +1,17 @@
-/** 
-    * foodSlider 
-    *
-    * @author Gioele Giunta, Carlos Alvarez
-    * @version 1.2
-    * @since 2024-05-07
-    * @info Me (Gioele) am going to use the CAMEL CASE for the java files
-**/
+/**
+ * @file foodSlider.js
+ * @brief Implements a food slider functionality on the website.
+ * @author Gioele Giunta, Carlos Alvarez
+ * @version 1.2
+ * @date 2024-05-07
+ * @info The author, Gioele, is going to use the Camel Case for the JavaScript files.
+ */
 
+// Executed when the DOM content is loaded
 document.addEventListener("DOMContentLoaded", function() {
     /*
-        The code above colorize every slide-body of the code using genColor
-    */
+     * The code above colorize every slide-body of the code using genColor
+     */
     var slideBodies = document.querySelectorAll('.slider-container .slide-body');
 
     slideBodies.forEach(function(slideBody) {
@@ -19,8 +20,8 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     /*
-        The code above make sure that slider arrow are visible and working well
-    */
+     * The code above makes sure that slider arrows are visible and working well
+     */
     var sliderContainer = document.querySelector('.slider-container');
     var slide = document.querySelector('.slide');
     var sliderPrev = document.querySelector('.slider-prev');
@@ -29,8 +30,11 @@ document.addEventListener("DOMContentLoaded", function() {
     var visibleElements = Math.floor(sliderContainer.offsetWidth / slide.offsetWidth);
     var scrolledElements = 4;
 
-    //I am sure that if visibleElements are less than slides, are the one on the right that are invisible
-    
+    // Ensure that if visibleElements are less than slides, the ones on the right are invisible
+
+    /**
+     * @brief Toggles the visibility of the previous and next arrows based on the current scroll position.
+     */
     function toggleArrows() {
         if (scrolledElements == slideBodies) {
             sliderNext.style.display = 'none';
@@ -44,12 +48,19 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+    /**
+     * @brief Handles the click event of the previous arrow.
+     */
     sliderPrev.addEventListener('click', function() {
         var newSlidesNumber = scrolledElements % visibleElements;
         scrolledElements -= newSlidesNumber;
         sliderContainer.scrollLeft -= scrolledElements * slide.offsetWidth;
         toggleArrows();
     });
+
+    /**
+     * @brief Handles the click event of the next arrow.
+     */
     sliderNext.addEventListener('click', function() {
         var newSlidesNumber = slideBodies % scrolledElements;
         scrolledElements += newSlidesNumber;

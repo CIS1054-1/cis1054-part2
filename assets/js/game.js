@@ -1,12 +1,13 @@
-/** 
-    * game
-    *
-    * @author Gioele Giunta
-    * @version 1.0
-    * @since 2024-05-07
-    * @info Me (Gioele) am going to use the CAMEL CASE for the java files
-**/
+/**
+ * @file game.js
+ * @brief Implements a simple game where the player shoots at aliens.
+ * @author Gioele Giunta
+ * @version 1.0
+ * @date 2024-05-07
+ * @info The author, Gioele, is going to use the Camel Case for the JavaScript files.
+ */
 
+// Executed when the DOM content is loaded
 document.addEventListener('DOMContentLoaded', function () {
     const player = document.getElementById('player');
     let playerPosition = 50;
@@ -14,6 +15,10 @@ document.addEventListener('DOMContentLoaded', function () {
     let bullets = [];
     let play = 1;
 
+    /**
+     * @brief Handles the keydown events for player movement and shooting.
+     * @param event The keydown event object.
+     */
     document.addEventListener('keydown', function (event) {
         if(play){
             document.getElementById('instruction').style.display = "none";
@@ -27,12 +32,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 shoot();
             }
         }
-
     });
 
-    setInterval(createAlien, 2000); // Create a new alien every 2 seconds
-    setInterval(moveAliens, 1000); // Move the aliens every second
+    // Create a new alien every 2 seconds
+    setInterval(createAlien, 2000);
 
+    // Move the aliens every second
+    setInterval(moveAliens, 1000);
+
+    /**
+     * @brief Creates a new alien and adds it to the game.
+     */
     function createAlien() {
         if(play){
             const alien = document.createElement('div');
@@ -44,6 +54,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    /**
+     * @brief Moves the aliens and checks for collisions with the player.
+     */
     function moveAliens() {
         if(play){
             aliens.forEach(function (alien, index) {
@@ -63,6 +76,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    /**
+     * @brief Makes an alien shoot a bullet.
+     * @param alien The alien element.
+     */
     function alienShoot(alien) {
         const bullet = document.createElement('div');
         bullet.classList.add('bullet');
@@ -89,6 +106,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 100);
     }
 
+    /**
+     * @brief Allows the player to shoot a bullet.
+     */
     function shoot() {
         const bullet = document.createElement('div');
         bullet.classList.add('bullet');
@@ -123,6 +143,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 100);
     }
 
+    /**
+     * @brief Handles the game over condition.
+     */
     function gameOver() {
         play = 0;
         document.getElementById('instruction').style.display = "block";

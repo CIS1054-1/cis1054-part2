@@ -1,18 +1,17 @@
 <?php
 /**
- * cookies
- *
+ * @file cookies.php
+ * @brief Handles the management of cookies.
  * @author Gioele Giunta
  * @version 1.0
- * @since 2023-04-29
- * @info Me (Gioele) am going to use the SNAKE_CASE for the php files
+ * @date 2023-04-29
+ * @info The author, Gioele, is going to use the Snake Case for the PHP files.
  */
 
 class Cookies
 {
     /**
-     * Checks if cookies are allowed.
-     *
+     * @brief Checks if cookies are allowed.
      * @return bool True if cookies are allowed, false otherwise.
      */
     public static function cookies_allowed()
@@ -22,8 +21,7 @@ class Cookies
     }
 
     /**
-     * Checks if the user is authenticated in cookies.
-     *
+     * @brief Checks if the user is authenticated in cookies.
      * @return bool True if the user is authenticated, false otherwise.
      */
     public static function is_authenticated()
@@ -33,8 +31,7 @@ class Cookies
     }
 
     /**
-     * Saves data to the cookies.
-     *
+     * @brief Saves data to the cookies.
      * @param array $data An associative array with keys as the cookie names and values as the corresponding values.
      */
     public static function save_data(array $data)
@@ -54,8 +51,7 @@ class Cookies
     }
 
     /**
-     * Destroys cookies and remove the data
-     *
+     * @brief Destroys cookies and removes the data.
      */
     public static function destroy_cookies()
     {

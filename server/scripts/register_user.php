@@ -1,13 +1,11 @@
 <?php
 /**
- * register_us
- *
- * This script handles the user registration process.
- *
+ * @file register_user.php
+ * @brief Handles the user registration process.
  * @author Gioele Giunta
  * @version 1.0
- * @since 2023-04-29
- * @info Me (Gioele) am going to use the SNAKE CASE for the php files
+ * @date 2023-04-29
+ * @info The author, Gioele, is going to use the Snake Case for the PHP files.
  */
 
 require_once __DIR__ . '/../autoload.php';
@@ -20,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get the request body as JSON
     $inputJSON = file_get_contents('php://input');
     $input = json_decode($inputJSON, TRUE);
-    
+
     // Escape the user input values to prevent SQL injection
     $name = $db->quote($input['name']);
     $surname = $db->quote($input['surname']);
@@ -29,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Check if all required fields are not empty
     if (!empty($name) && !empty($surname) && !empty($email) && !empty($password)) {
-        //Server side check
+        // Server-side check
         if (preg_match('/^(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-zA-Z])./', $password) && preg_match('/^[^\s@]+@[^\s@]+\.[^\s@]+$/', $email)) {
             $signup_query = "INSERT INTO users (name, surname, email, password, role) VALUES('$name', '$surname', '$email', " . hash_crypt($password) . ", 'user')";
 
@@ -60,14 +58,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $arr = ["status" => "false", "message" => "Error 404, retry in a few minutes :("];
                     echo json_encode($arr);
                 }
-    
             } else {
-                    // If the email is already registered, return an error response
-                    $arr = ["status" => "false", "message" => "Email in use: Try logging in"];
-                    echo json_encode($arr);
+                // If the email is already registered, return an error response
+                $arr = ["status" => "false", "message" => "Email in use: Try logging in"];
+                echo json_encode($arr);
             }
         } else {
-            //Email or password doesn't respect critera, return an error responde
+            // Email or password doesn't respect criteria, return an error response
             $arr = ["status" => "false", "message" => "Please check your email and password!"];
             echo json_encode($arr);
         }

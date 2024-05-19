@@ -1,19 +1,18 @@
- /** 
-    * cookieSet
-    *
-    * @author Gioele Giunta
-    * @version 1.0
-    * @since 2024-05-07
-    * @info Me (Gioele) am going to use the CAMEL CASE for the java files
-**/
- 
- 
 /**
- * Set the initial COOKIE in this way all the others cookie can be saved
+ * @file cookieSet.js
+ * @brief Manages the setting and checking of cookies on the website.
+ * @author Gioele Giunta
+ * @version 1.0
+ * @date 2024-05-07
+ * @info The author, Gioele, is going to use the Camel Case for the JavaScript files.
+ */
+
+/**
+ * @brief Sets a cookie with the given name, value, and expiration date.
  * 
- * @param {string} cname - The name of the cookie
- * @param {string} cvalue - The value of the cookie
- * @param {number} exdays - The number of days until the cookie expires
+ * @param cname The name of the cookie.
+ * @param cvalue The value of the cookie.
+ * @param exdays The number of days until the cookie expires.
  */
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
@@ -23,10 +22,10 @@ function setCookie(cname, cvalue, exdays) {
 }
 
 /**
- * Check if cookie is already set, if it is true proceed without displaying the banner, else display the banner
+ * @brief Checks if a cookie with the given name is set.
  * 
- * @param {string} cname - The name of the cookie to check
- * @returns {boolean} - Returns true if the cookie is set, otherwise false
+ * @param cname The name of the cookie to check.
+ * @return true if the cookie is set, false otherwise.
  */
 function checkCookie(cname) {
     var name = cname + "=";
@@ -52,7 +51,7 @@ if (checkCookie("cookieAllow")) {
 }
 
 /**
- * This function manages the event click of the button
+ * @brief Manages the event click of the "Accept" button.
  */
 document.getElementById("accept-btn").addEventListener("click", function() {
     setCookie("cookieAllow", "true", 365); // Set cookie with a days of 365 days 

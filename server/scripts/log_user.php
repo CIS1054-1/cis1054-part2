@@ -1,12 +1,13 @@
 <?php
 /**
- * log_user
- *
+ * @file log_user.php
+ * @brief Handles the user login process.
  * @author Gioele Giunta
  * @version 1.0
- * @since 2023-04-29
- * @info Me (Gioele) am going to use the SNAKE CASE for the php files
+ * @date 2023-04-29
+ * @info The author, Gioele, is going to use the Snake Case for the PHP files.
  */
+
 require_once __DIR__ . '/../autoload.php';
 
 // Set the Content-Type header to indicate that the response is in JSON format
@@ -24,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Check if email and password are not empty
     if (!empty($email) && !empty($password)) {
-        //Server side check
+        // Server-side check
         if (preg_match('/^(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-zA-Z])./', $password) && preg_match('/^[^\s@]+@[^\s@]+\.[^\s@]+$/', $email)) {
             // Check if the email exists in the users table
             $email_query = "SELECT * FROM users WHERE email='$email'";
@@ -49,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
             }
         } else {
-            //Email or password doesn't respect critera, return an error responde
+            // Email or password doesn't respect criteria, return an error response
             $arr = ["status" => "false", "message" => "Please check your email and password!"];
             echo json_encode($arr);
         }

@@ -1,21 +1,19 @@
-/** 
-    * generateAvatar 
-    *
-    * @author Gioele Giunta
-    * @version 1.0
-    * @since 2024-05-05
-    * @info Me (Gioele) am going to use the CAMEL CASE for the java files
-**/
-
 /**
- *
- * This function return a a image/png created dynamically using the given parameters
- * @param text
- * @param foregroundColor
- * @param backgroundColor
- * @returns color 
+ * @file generateAvatar.js
+ * @brief Generates a dynamic avatar image based on the provided parameters.
+ * @author Gioele Giunta
+ * @version 1.0
+ * @date 2024-05-05
+ * @info The author, Gioele, is going to use the Camel Case for the JavaScript files.
  */
 
+/**
+ * @brief Generates a dynamic avatar image based on the provided parameters.
+ * @param text The text to be displayed on the avatar.
+ * @param foregroundColor The color of the text.
+ * @param backgroundColor The color of the background.
+ * @returns The generated avatar image as a data URL in the "image/png" format.
+ */
 function generateAvatar(text, foregroundColor, backgroundColor) {
     const canvas = document.createElement("canvas");
     const context = canvas.getContext("2d");
@@ -36,4 +34,3 @@ function generateAvatar(text, foregroundColor, backgroundColor) {
 
     return canvas.toDataURL("image/png");
 }
-

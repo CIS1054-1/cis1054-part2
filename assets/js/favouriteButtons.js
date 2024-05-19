@@ -1,21 +1,21 @@
-/** 
-    * favouriteButtons
-    *
-    * @author Gioele Giunta
-    * @version 1.0
-    * @since 2024-05-07
-    * @info Me (Gioele) am going to use the CAMEL CASE for the java files
-**/
+/**
+ * @file favouriteButtons.js
+ * @brief Manages the functionality of the favorite buttons on the website.
+ * @author Gioele Giunta
+ * @version 1.0
+ * @date 2024-05-07
+ * @info The author, Gioele, is going to use the Camel Case for the JavaScript files.
+ */
 
 var action;
 
-
 /**
-* This function manages the event click of the button
-* @param button_id Is required to know on wich button do the add remove class operations
-* @param foods_id Is required to know the foods_id to add to favourites
-* @param element_id In the favourites list this is required to know witch element remove from the list
-*/
+ * @brief Handles the click event of the favorite buttons.
+ * 
+ * @param button_id The ID of the button that was clicked.
+ * @param foods_id The ID of the food item associated with the button.
+ * @param element_id The ID of the element to be removed from the favorites list (if applicable).
+ */
 function favouriteClick(button_id, foods_id, element_id) {
     var favouriteBtn = document.getElementById(button_id)
     if (favouriteBtn.classList.contains("favourite-pushed")) {
@@ -23,7 +23,8 @@ function favouriteClick(button_id, foods_id, element_id) {
     } else {
         action = "add_wishlist.php";
     }
-    // Perform an AJAX call to the PHP script in order to save food in the wishlist
+
+    // Perform an AJAX call to the PHP script to save/remove the food from the wishlist
     const recipeUrl = 'server/scripts/' + action;
     const postBody = {
       foods_id: foods_id,
@@ -43,6 +44,7 @@ function favouriteClick(button_id, foods_id, element_id) {
         .then((responseData) => {
             console.log("Response:", responseData);
             if (responseData.status === "true") {
+                // Toggle the button class to reflect the new state
                 if (favouriteBtn.classList.contains("favourite-pushed")) {
                     favouriteBtn.classList.remove("favourite-pushed");
                     favouriteBtn.classList.add("favourite-button");
@@ -50,7 +52,8 @@ function favouriteClick(button_id, foods_id, element_id) {
                     favouriteBtn.classList.remove("favourite-button");
                     favouriteBtn.classList.add("favourite-pushed");
                 }
-                //If the caller is in the favourites.html so delete the element
+
+                // If the caller is on the favorites.html page, delete the element from the list
                 if(element_id != null){
                     var elementRmv = document.getElementById(element_id);
 
@@ -66,6 +69,4 @@ function favouriteClick(button_id, foods_id, element_id) {
         .catch((err) => {
             console.info('Error:', err.message);
         });
-    
-
-};
+}

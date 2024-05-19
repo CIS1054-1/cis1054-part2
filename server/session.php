@@ -1,27 +1,26 @@
 <?php
 /**
- * session
- *
+ * @file session.php
+ * @brief Manages the session handling.
  * @author Gioele Giunta
  * @version 1.2
- * @since 2023-04-29
- * @info Me (Gioele) am going to use the SNAKE_CASE for the php files
+ * @date 2023-04-29
+ * @info The author, Gioele, is going to use the Snake Case for the PHP files.
  */
 
 class Session
 {
-    
     /**
-     * Initializes the session if it hasn't been started already.
+     * @brief Initializes the session if it hasn't been started already.
      */
     public static function start()
     {
         $cookies = new Cookies();
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
-            //Check if the cookies are loaded
+            // Check if the user is authenticated in cookies
             if($cookies->is_authenticated()){
-                //Catch all the elements from the cookies and put inside session
+                // Copy the cookie data to the session
                 $_SESSION['ID'] = $_COOKIE['ID'];
                 $_SESSION['name'] = $_COOKIE['name'];
                 $_SESSION['surname'] = $_COOKIE['surname'];
@@ -32,8 +31,7 @@ class Session
     }
 
     /**
-     * Checks if the user is authenticated in session.
-     *
+     * @brief Checks if the user is authenticated in the session.
      * @return bool True if the user is authenticated, false otherwise.
      */
     public static function is_authenticated()
@@ -43,8 +41,7 @@ class Session
     }
 
     /**
-     * Saves data to the session.
-     *
+     * @brief Saves data to the session.
      * @param array $data An associative array with keys as the session variable names and values as the corresponding values.
      */
     public static function save_data(array $data)
@@ -59,14 +56,14 @@ class Session
     }
 
     /**
-     * Destroys session and remove the data
-     *
+     * @brief Destroys the session and removes the data.
      */
     public static function destroy_session()
     {
         // Ensure the session is started
         self::start();
 
+        // Clear the session data
         $_SESSION = array();
 
         // Delete the session cookies
@@ -78,6 +75,7 @@ class Session
             );
         }
         
+        // Destroy the session
         session_destroy();
     }
 }
