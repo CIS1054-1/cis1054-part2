@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $email_html .= "</div>";
                 $email_html .= "</div>";
 
-                send_email($email, "Your Favourites Food List!", $email_html, "Favourites List!", $mail);
+                send_email($email, "Your reservation!", $email_html, "Reservation!", $mail);
 
                 // Redirect the user to the confirmation page or the home page
                 header('Location: ../../done.php?fill=Your reservation has been saved!&details=Reservation Time: '. $datetime . '   Table: ' . $table_number . '!   Check your email!');

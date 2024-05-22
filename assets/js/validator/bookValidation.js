@@ -61,10 +61,12 @@ submitButton.addEventListener('click', (event) => {
  *        When the user types into either of these fields, it updates the URL with the
  *        new date and time parameters using the `updateBookingUrl()` function.
  */
+
 const dateInput = document.querySelector('#book-table-form input[name="date"]');
 const timeInput = document.querySelector('#book-table-form input[name="time"]');
 dateInput.addEventListener('input', debounce(updateBookingUrl, 1000));
 timeInput.addEventListener('input', debounce(updateBookingUrl, 1000));
+let timeoutId;
 
 /**
  * @brief Updates the URL with the new date and time parameters.
@@ -93,9 +95,10 @@ function debounce(func, delay) {
     return function() {
         const context = this;
         const args = arguments;
+    
         clearTimeout(timeoutId);
         timeoutId = setTimeout(function() {
-            func.apply(context, args);
+        func.apply(context, args);
         }, delay);
     };
 }

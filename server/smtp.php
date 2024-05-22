@@ -16,18 +16,19 @@ $mail = new PHPMailer\PHPMailer\PHPMailer();
 $mail->IsSMTP();
 
 try {
+    // Load configuration from the config.ini file
+    $config = parse_ini_file('config.ini');
     // Initialize the mail service
     // $mail->SMTPDebug = 1; 
     $mail->SMTPAuth = true; // Authentication enabled
-    $mail->SMTPSecure = 'ssl'; // Secure transfer enabled, required for Gmail
-    $mail->Host = "smtp.gmail.com";
+    $mail->Host = $config['host'];
     $mail->SMTPAuth = true;
-    $mail->Username = "giuntagioele3@gmail.com";
-    $mail->Password = "hxffrodggpiwzgcn";
+    $mail->Username = $config['email'];
+    $mail->Password = $config['password_smtp'];
     $mail->SMTPSecure = 'tls';
-    $mail->Port = 587;
+    $mail->Port = $config['port'];
 
-    $mail->SetFrom('giuntagioele3@gmail.com');
+    $mail->SetFrom($config['email']);
 } catch (\Exception $e) {
     // Handle any exceptions that may occur during the initialization
 }
