@@ -10,11 +10,12 @@
 require_once __DIR__ . '/bootstrap.php';
 require_once __DIR__ . '/navbar.php';
 
+
 // Get the datetime parameter from the request
 if(empty($_GET['datetime'])){
     $datetime = date('Y-m-d H:i:s');
 }else{
-    $datetime = $_GET['datetime'];
+    $datetime = $db->quote($_GET['datetime']);
 }
 
 // Query the reservations table for the given datetime
