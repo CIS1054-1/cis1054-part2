@@ -67,7 +67,9 @@ function favouriteClick(button_id, foods_id, element_id) {
                     }
                 }
             } else {
-              generalErrorMessage.textContent = responseData.message;
+                if(responseData.message == "Login"){
+                    window.location.href = "signin.php";
+                }
             }
         })
         .catch((err) => {

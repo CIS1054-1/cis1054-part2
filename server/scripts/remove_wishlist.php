@@ -14,14 +14,22 @@ require_once __DIR__ . '/../autoload.php';
 header('Content-Type: application/json');
 
 // Check if the request method is POST and there is an user_ID set
-if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_SESSION['ID'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get the request body as JSON
     $inputJSON = file_get_contents('php://input');
     $input = json_decode($inputJSON, TRUE);
 
     // Escape the food id to prevent SQL injection
     $foods_id = $db->quote($input['foods_id']);
-    $users_id = $_SESSION['ID'];
+    $users_id;
+    if(empty($_SESSION['ID'])){
+        //Return error to ask to go to login page
+        $arr = ["status" => "false", "message" => "Login"];
+        echo json_encode($arr);
+        die;
+    }else{
+        $users_id = $_SESSION['ID'];
+    }
 
     // Check if foods_id is not empty
     if (!empty($foods_id)) {
