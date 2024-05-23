@@ -4,7 +4,9 @@
 
 The project adopted a modular development approach. This proved beneficial in meeting deadlines as it allowed parallel work on separate modules. This avoided delays caused by waiting for other parts to be completed. Compared to methodologies like Agile or Waterfall, the modular approach was better suited for this project's needs.
 
-![Modular Development Chain by DashDev]()
+![Modular Development Chain by DashDev][modular-development-chain]
+
+[modular-development-chain]: https://github.com/PHPMailer/PHPMailer
 
 ## Technology Stack
 
@@ -43,15 +45,15 @@ The project utilizes PHPMailer for email functionality. A `config.ini` file secu
 
 The project has been tested for accessibility using the Mozilla Firefox Accessibility Inspector.
 
-ARIA tags are implemented to enhance accessibility for screen readers, and `alt` attributes are used for images to provide textual descriptions. Additionally, `role` attributes are used where necessary to improve the semantic meaning of elements.![Accessibility Page in Mozilla Firefox]()
+ARIA tags are implemented to enhance accessibility for screen readers, and `alt` attributes are used for images to provide textual descriptions. Additionally, `role` attributes are used where necessary to improve the semantic meaning of elements.
 
 ## Browser Compatibility
 
-The project has been thoroughly tested on the two most popular browsers in Malta (Chrome, Edge) and Mozilla Firefox, following browser market share statistics (https://gs.statcounter.com/). As Safari is not commonly used in Malta due to the low prevalence of Macs, testing was not conducted on this browser.![Comparison in statcounter.com]()
+The project has been thoroughly tested on the two most popular browsers in Malta (Chrome, Edge) and Mozilla Firefox, following browser market share statistics (https://gs.statcounter.com/). As Safari is not commonly used in Malta due to the low prevalence of Macs, testing was not conducted on this browser.
 
 ## Responsive Design
 
-The project employs a responsive design approach, utilizing generic classes like `flex-row` and `flex-col` for layout purposes. This ensures the website adapts seamlessly to different screen sizes and devices, providing an optimal user experience across various platforms.![Laptop View Vs Mobile View]()
+The project employs a responsive design approach, utilizing generic classes like `flex-row` and `flex-col` for layout purposes. This ensures the website adapts seamlessly to different screen sizes and devices, providing an optimal user experience across various platforms.
 
 ## Caching Optimization
 
