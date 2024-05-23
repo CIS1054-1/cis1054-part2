@@ -27,7 +27,7 @@
         {% if navbarData.is_authenticated %}
         <li>
             <img id="profile_image" class="rounded-circle profile-image" onmouseover="showDropdown()" onclick="toggleDropdown()">
-            <ul class="dropdown-menu" id="dropdown-menu">
+            <ul class="dropdown-menu" id="dropdown-menu" aria-label="Expand Personal Area Commands" aria-expanded="false" aria-controls="dropdown-menu">
                 {% for item in navbarData.navbar_elements %}
                     {% if item.signed %}
                         <li><a href="{{ item.href }}">{{ item.name }}</a></li>

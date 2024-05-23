@@ -34,9 +34,9 @@
                 </div>
             </div>
             {% if details.in_wishlist %}
-                <a id="favourite-btn" class="favourite-pushed" onclick="favouriteClick('favourite-btn', {{ details.ID }}, null)"></a>
+                <a id="favourite-btn" class="favourite-pushed" onclick="favouriteClick('favourite-btn', {{ details.ID }}, null)" aria-label="Remove from favourites"></a>
             {% else %}
-                <a id="favourite-btn" class="favourite-button" onclick="favouriteClick('favourite-btn', {{ details.ID }}, null)"></a>
+                <a id="favourite-btn" class="favourite-button" onclick="favouriteClick('favourite-btn', {{ details.ID }}, null)" aria-label="Add to favourites"></a>
             {% endif %}
             
         </div>
@@ -44,7 +44,7 @@
     <section class="gray-bar">
             <h1 class="font-40p">Nutritional Information</h1>
             <div class="open-list">
-                <h3 class="open-title font-20p">View Allergens<span class="arrow">▼</span></h3>
+                <h3 class="open-title font-20p" id="allergens" aria-label="Expand Allergens" aria-expanded="false" aria-controls="allergens" role="button">View Allergens<span class="arrow">▼</span></h3>
                 <ul class="open-content" style="display: none;">
                     {% for item in details.allergies %}  
                         <li class="content">{{item}}</li>
@@ -55,7 +55,7 @@ Gluten (Oats), Gluten (Spelt), Gluten (Kamut), Crustaceans, Fish, Peanuts, Tree 
                     </li>                
                 </ul>
                 {% if details.bio == 1 %}
-                <h3 class="open-title font-20p">See what it means to be BIO<span class="arrow">▼</span></h3>
+                <h3 class="open-title font-20p" id="bio" aria-label="Expand Bio" aria-expanded="false" aria-controls="bio" role="button">See what it means to be BIO<span class="arrow">▼</span></h3>
                 <ul class="open-content" style="display: none;">
                         <li class="content">Being <strong>BIO</strong> does not only mean having the BIO label, it means having a <strong>love</strong> for food and finding suppliers who are committed to respecting the earth and people.
                             With km0 quality vegetables and meat.

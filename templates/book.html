@@ -20,7 +20,7 @@ Book a Table
 {% block content %}
 <main>
     <section class="top-bar" style="background-color: var(--d-color);">  
-        <img src="assets/img/dogmburger.png"/>
+        <img src="assets/img/dogmburger.png" alt="Dog Eating Hamburger"/>
         <div>
             <h1 style="color: var(--d-color);">Book a Table</h1>
         </div>
@@ -45,7 +45,7 @@ Book a Table
                                 {% set isReserved = true %}
                             {% endif %}
                         {% endfor %}
-                        <div class="table-circle {% if isReserved %}occupied{% else %}available{% endif %}" data-table="{{ i }}">
+                        <div class="table-circle {% if isReserved %}occupied{% else %}available{% endif %}" aria-label="{% if isReserved %}Table occupied, you can't book this table!{% else %}Table available, click to book!{% endif %}" data-table="{{ i }}">
                             {{ i }}
                         </div>
                     {% endfor %}

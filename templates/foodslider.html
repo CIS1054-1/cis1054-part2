@@ -9,7 +9,7 @@
 
 {% block foodslider %}
 <section class="slider">
-    <div class="slider-prev">&lt;</div>
+    <div role="button"  class="slider-prev" aria-label="Previous Categories">&lt;</div>
     <ul class="slider-container">
         {% for category in categories %}
             <a class="slide" href="item?id={{category.ID}}">
@@ -27,7 +27,7 @@
             </a>
             {% endfor %}
     </ul>
-    <div class="slider-next">&gt;</div>
+    <div role="button" class="slider-next" aria-label="Next Categories">&gt;</div>
 </section>
 
     <script type="text/javascript" src="assets/js/foodSlider.js"></script>

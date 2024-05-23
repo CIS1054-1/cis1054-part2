@@ -800,6 +800,7 @@ footer h1 {
 
 footer a {
   color: var(--black);
+  text-decoration: none;
 }
 
 

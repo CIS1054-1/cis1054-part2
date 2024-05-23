@@ -20,7 +20,7 @@ Favourites
 {% block content %}
     <main>
         <section class="top-bar">  
-            <img src="assets/img/dogmburger.png"/>
+            <img src="assets/img/dogmburger.png" alt="Dog Eating Hamburger"/>
             <div>
                 <h1>Favourites</h1>
             </div>
@@ -36,7 +36,7 @@ Favourites
                         {% include "foodslider.html" with {'categories' : categories, 'selectedCategories' : selectedCategories} %}
                         {% endblock %}
                     {% else %}  
-                        <a class="primary-button" href="server/scripts/send_favourites.php">Send via Email</a>
+                        <a class="primary-button" href="server/scripts/send_favourites.php" role="button">Send via Email</a>
                         <ul class="menu-list">
                         {% for item in favourites %}
                             <li id="favourite-element{{item.ID}}" class="menu-item flex-row-d">
@@ -44,14 +44,14 @@ Favourites
                                     <img src="assets/img/menu/{{ item.image }}" alt="{{ item.name }}">
                                 </div>
                                 <div class="item-info">
-                                    <a class="flex-row-d" href="details?id={{item.ID}}">
+                                    <a class="flex-row-d" href="details?id={{item.ID}}" aria-label="Click to go to the details of this Product" role="button">
                                         <div class="flex-column field-container">
                                             <h3 class="item-name">{{ item.name }}</h3>
                                             <p class="item-ingredients">{{ item.ingredients }}</p>
                                         </div>
                                     </a>
                                 </div>
-                                <a id="favourite-btn{{item.ID}}" class="favourite-pushed" onclick="favouriteClick('favourite-btn{{item.ID}}', {{ item.ID }}, 'favourite-element{{item.ID}}')"></a>
+                                <a id="favourite-btn{{item.ID}}" class="favourite-pushed" onclick="favouriteClick('favourite-btn{{item.ID}}', {{ item.ID }}, 'favourite-element{{item.ID}}')" aria-label="Remove from favourites"></a>
                             </li>
                         {% endfor %}
                         </ul>

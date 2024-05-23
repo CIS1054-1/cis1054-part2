@@ -8,8 +8,8 @@
  */
 
 // Get the form and the input fields
-const subjectInput = document.getElementById('subject');
-const descriptionInput = document.getElementById('description');
+const subjectInput = document.getElementById('subject-input');
+const descriptionInput = document.getElementById('description-input');
 const submitButton = document.getElementById('submit_complaint');
 const subjectErrorMessage = document.getElementById('subject-error');
 const descriptionErrorMessage = document.getElementById('description-error');
