@@ -37,6 +37,7 @@ if(!empty($users_id) && !empty($name) && !empty($surname) && !empty($email)) {
         // Add the food image as an attachment and create the CID
         $food_path = '../../assets/img/menu/' . $row['image'];
         $food_cid = 'food_image' . $i;
+        //UNFORTUNATELY I TESTED WITH GMAIL AND GMAIL DOESN'T SUPPORT THE WEBP FORMAT FOR THE IMAGES AND DISPLAYS A BLACK BACKGROUND AROUND SMALL PROBLEM
         $mail->AddEmbeddedImage($food_path, $food_cid);
 
         // Build the HTML content for the food item

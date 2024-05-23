@@ -678,25 +678,25 @@ div.field-container{
 .favourite-button {
   width: 50px;
   height: 50px;
-  background-image: url('../img/heart-outline.png');
+  background-image: url('../img/heart-outline.webp');
   background-size: cover;
   cursor: pointer;
 }
 
 .favourite-button:hover {
-  background-image: url('../img/heart.png'); 
+  background-image: url('../img/heart.webp'); 
 }
 
 .favourite-pushed{
   width: 50px;
   height: 50px;
-  background-image: url('../img/heart.png');
+  background-image: url('../img/heart.webp');
   background-size: cover;
   cursor: pointer;
 }
 
 .favourite-pushed:hover {
-  background-image: url('../img/heart-outline.png');
+  background-image: url('../img/heart-outline.webp');
 }
 
 /* Top Bar */
@@ -770,7 +770,7 @@ div.field-container{
 .alien {
   width: 50px;
   height: 50px;
-  background-image: url('../img/angry-pizza.png');
+  background-image: url('../img/angry-pizza.webp');
   background-size: cover;
   position: absolute;
 }
@@ -783,7 +783,7 @@ div.field-container{
 #player {
   width: 100px;
   height: 100px;
-  background-image: url('../img/chicken_fighter.png');
+  background-image: url('../img/chicken_fighter.webp');
   background-size: cover;  position: absolute;
   bottom: 0;
   left: 50%;

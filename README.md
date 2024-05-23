@@ -1,4 +1,4 @@
-# cis1054-part2
+# cis1054_part2
 Part 2: Dynamic Web Application
 
 # Project Overview
