@@ -22,7 +22,7 @@
                     <h1 class="font-20p title">{{category.name }}</h1>
                 </div>
                 <div class="slide-body">
-                    <img src="assets/img/{{ category.image }}" class="img" alt="{{category.name}}">
+                    <img src="assets/img/{{ category.image }}" class="img" alt="{{category.name}}" cache-control="max-age=5259600, public">
                 </div>
             </a>
             {% endfor %}

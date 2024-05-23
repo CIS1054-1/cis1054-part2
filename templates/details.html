@@ -22,14 +22,14 @@
     <section class="white-bar">
         <div class="card flex-row-d">
             <div class="sub-card">
-                <img class="curved-image" src="assets/img/menu/{{details.image}}" alt="{{details.name}}">
+                <img class="curved-image" src="assets/img/menu/{{details.image}}" alt="{{details.name}}" cache-control="max-age=5259600, public">
             </div>
             <div class="sub-card">
                 <div class="field-container">
                     <h1 class="font-40p">{{details.name}}</h1>
                     <p class="font-20p">{{details.ingredients}}</p>
                     {% if details.bio == 1 %}
-                    <img src="assets/img/bio_certified.png" class="rounded-circle width-80p"/>
+                    <img src="assets/img/bio_certified.png" class="rounded-circle width-80p" cache-control="max-age=5259600, public"/>
                     {% endif %}
                 </div>
             </div>
@@ -64,8 +64,8 @@ Gluten (Oats), Gluten (Spelt), Gluten (Kamut), Crustaceans, Fish, Peanuts, Tree 
                 {% endif %}
             </div>
     </section>
-    <script src="assets/js/openList.js"></script>
-    <script src="assets/js/favouriteButtons.js"></script>
+    <script src="assets/js/openList.js" cache-control="max-age=5259600, public"></script>
+    <script src="assets/js/favouriteButtons.js" cache-control="max-age=5259600, public"></script>
 
 
 </main>

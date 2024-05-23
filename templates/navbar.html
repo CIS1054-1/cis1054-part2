@@ -8,7 +8,15 @@
     #}
     
 {% block navbar %}
-    <ul class="navbar-container">
+    <div class="stripe">
+        <div class="navbar-toggle">
+            <button class="navbar-toggler" type="button" onclick="toggleNavBar()">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </div>
+
+    <ul class="navbar-container" id="navbar-container-general">
         {% for item in navbarData.navbar_elements %}
             {% set is_active = item.href == navbarData.page_name %}
             {% if item.signed == false and item.href != 'signin' %}

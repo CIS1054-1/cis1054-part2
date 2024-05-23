@@ -148,6 +148,14 @@ ul.navbar-container li a{
   padding-left: 0px;
 }
 
+.navbar-toggle {
+  display: none;
+}
+
+.stripe {
+  display: none;
+}
+
 body {
     display: block;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -880,7 +888,7 @@ ul, li, ol {
         margin-left: 5vw;
     }
     
-    /*NavBar Elements*/
+    /*NavBar */
     ul.navbar-container{
         justify-content: flex-end;
     }
@@ -889,6 +897,12 @@ ul, li, ol {
       height: auto;
       position: absolute;
       z-index: 99;
+    }
+
+    /* Book */
+    .table-grid {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(4, 1fr);
     }
 
 }
@@ -1000,6 +1014,95 @@ ul, li, ol {
         justify-content: center;
         align-items: center;
       }
-      
+
+
+      /* NavBar Mobile */
+      ul.navbar-container {
+        display: none;
+        width: 50vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        justify-content: flex-start;
+        padding-top: 15vh;
+        flex-direction: column;
+      }
+    
+      ul.navbar-container li {
+        width: 80%;
+        border-radius: 0;
+      }
+    
+      ul.navbar-container li a {
+        font-size: 16px;
+      }
+    
+      .profile-image {
+        margin-top: 10px;
+      }
+    
+      .dropdown-menu {
+        position: static;
+        display: none;
+        width: 100%;
+        border: none;
+        border-radius: 0;
+        padding: 0;
+      }
+    
+      .dropdown-menu li {
+        padding: 10px 20px;
+      }
+
+      .navbar-toggle {
+        display: block;
+        text-align: right;
+        padding-right: 20px;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 1001;
+      }
+    
+      .navbar-toggler {
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+      }
+    
+      .navbar-toggler-icon {
+        display: inline-block;
+        width: 1.5em;
+        height: 1.5em;
+        vertical-align: middle;
+        content: "";
+        background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(0, 0, 0, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+      }
+      .navbar-toggler-icon.opened {
+        background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(0, 0, 0, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M6 6L24 24M24 6L6 24'/%3e%3c/svg%3e");
+      }
+
+      .stripe {
+        width: 100vw;
+        height: 60px;
+        margin-right: 40px;
+        background-color: rgb(255, 255, 255);
+        overflow: hidden;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        z-index: 200;
+      }
+
+      /* Book */
+      .table-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+      }
+
 }
   

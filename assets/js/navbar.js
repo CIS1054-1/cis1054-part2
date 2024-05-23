@@ -54,3 +54,17 @@ var dropdownMenu = document.getElementById("dropdown-menu");
 dropdownMenu.addEventListener("mouseleave", function() {
     hideDropdown();
 });
+
+function toggleNavBar() {
+    var navbarContainer = document.getElementById("navbar-container-general");
+    var navbarToggler = document.querySelector(".navbar-toggler-icon");
+
+    if (navbarContainer.style.display === "flex") {
+        navbarContainer.style.display = "none";
+        navbarToggler.classList.remove('opened');
+    } else {
+        navbarContainer.style.display = "flex";
+        //Add Class To Have an X instead of the open menu symbol
+        navbarToggler.classList.add('opened');
+    }
+  }
