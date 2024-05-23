@@ -27,7 +27,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_SESSION['ID'])) {
     if (!empty($foods_id)) {
         $foods_query = "DELETE FROM wishlists WHERE users_ID = $users_id AND foods_ID = $foods_id";
         $foods_result = $db->query($foods_query);
-        $arr = ["status" => "true", "message" => "Success"];
+        //After a meeting with the teacher I found out this solution to notice when favourites elements are 0
+        $remaining_query = "SELECT COUNT(*) AS remaining_count FROM wishlists WHERE users_ID = $users_id";
+        $remaining_result = $db->query($remaining_query);
+        $remaining_row = $remaining_result->fetch_assoc();
+        $remaining_count = $remaining_row['remaining_count'];
+        $arr = ["status" => "true", "message" => "Success", "remaining" => $remaining_count];
         echo json_encode($arr);
     } else {
         // If the foods_id is empty, return an error response

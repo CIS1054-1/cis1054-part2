@@ -48,6 +48,10 @@ function favouriteClick(button_id, foods_id, element_id) {
                 if (favouriteBtn.classList.contains("favourite-pushed")) {
                     favouriteBtn.classList.remove("favourite-pushed");
                     favouriteBtn.classList.add("favourite-button");
+                    //Refresh favourites.php if the remaining item are 0, in order to display the 0 favourites items page
+                    if(responseData.remaining == 0){
+                        window.location.reload();
+                    }
                 } else {
                     favouriteBtn.classList.remove("favourite-button");
                     favouriteBtn.classList.add("favourite-pushed");
