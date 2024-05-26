@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Mag 23, 2024 alle 22:14
+-- Creato il: Mag 26, 2024 alle 14:06
 -- Versione del server: 10.4.28-MariaDB
 -- Versione PHP: 8.2.4
 
@@ -88,13 +88,7 @@ CREATE TABLE `complaints` (
 --
 
 INSERT INTO `complaints` (`ID`, `users_ID`, `subject`, `description`) VALUES
-(1, 15, 'dddddddddddddddddddddddd', 'dddddddddddddddddddddddddddddddddddddd'),
-(2, 15, 'Test123456', 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk'),
-(3, 15, 'dddddddddd', 'dddddddddddddddddddddddddddddddd'),
-(4, 15, 'ddddddddddddddddd', 'dddddddddddddddddddddddddddddddddd'),
-(5, 15, 'ddddCiao', 'porcodioddddddddddddddddddddddddd'),
-(6, 15, 'dxdddddd', 'ddddddddddddddddddddddddddddddddddd'),
-(7, 15, 'eeeeeeeeeeeeeeeee', 'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee');
+(2, 15, 'Test123456', 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk');
 
 -- --------------------------------------------------------
 
@@ -216,6 +210,7 @@ INSERT INTO `reservations` (`users_ID`, `table_number`, `time`, `book_duration`)
 (15, 3, '2024-05-20 11:48:14', 1.5),
 (15, 3, '2024-05-22 21:03:43', 1.5),
 (15, 3, '2024-05-23 12:34:38', 1.5),
+(15, 3, '2024-05-26 13:57:18', 1.5),
 (15, 4, '2024-05-14 18:12:00', 1.5),
 (15, 4, '2024-05-14 22:21:00', 1.5),
 (15, 4, '2024-05-16 12:04:41', 1.5),
@@ -264,9 +259,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`ID`, `name`, `surname`, `email`, `password`, `role`) VALUES
-(15, 'Gioele', 'Giunta', 'giunta.gioele0@gmail.com', '28be81190549b2febd04bca0dbbec4afebed4bdba543351ee3f99ac9b006f159e67a61bf7b9b418f7815582e825bdfc5', 'user'),
-(17, 'Gioele', 'Giunta2', 'giunta.gioele3@gmail.com', '28be81190549b2febd04bca0dbbec4afebed4bdba543351ee3f99ac9b006f159e67a61bf7b9b418f7815582e825bdfc5', 'user'),
-(18, 'Shizuno', 'Takahashi', 'siesie2828@gmail.com', '28be81190549b2febd04bca0dbbec4afebed4bdba543351ee3f99ac9b006f159e67a61bf7b9b418f7815582e825bdfc5', 'user');
+(15, 'Gioele', 'Giunta', 'giunta.gioele0@gmail.com', '28be81190549b2febd04bca0dbbec4afebed4bdba543351ee3f99ac9b006f159e67a61bf7b9b418f7815582e825bdfc5', 'user');
 
 -- --------------------------------------------------------
 
@@ -285,6 +278,10 @@ CREATE TABLE `wishlists` (
 --
 
 INSERT INTO `wishlists` (`users_ID`, `foods_ID`, `date_add`) VALUES
+(15, 1, '2024-05-23 20:46:07'),
+(15, 21, '2024-05-23 20:45:02'),
+(15, 27, '2024-05-23 20:46:16'),
+(15, 33, '2024-05-23 20:46:12'),
 (18, 5, '2024-05-19 14:33:36'),
 (18, 23, '2024-05-19 14:46:54'),
 (18, 32, '2024-05-19 14:33:16'),
